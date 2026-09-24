@@ -59,22 +59,6 @@ const RetellChatWidget = () => {
             right: 20px !important;
             z-index: 9998 !important;
           }
-          
-          /* Position Brevo widget in bottom left to avoid overlap */
-          #brevo-conversations {
-            position: fixed !important;
-            bottom: 20px !important;
-            left: 20px !important;
-            right: auto !important;
-            z-index: 9997 !important;
-          }
-          
-          /* Brevo button positioning */
-          .brevo-conversations-button {
-            left: 20px !important;
-            right: auto !important;
-            bottom: 20px !important;
-          }
         `;
         document.head.appendChild(style);
       };

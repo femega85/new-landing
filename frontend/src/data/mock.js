@@ -1,4 +1,5 @@
 // Mock data for FEMEGA landing page
+import femegaTeam from '../assets/femega_team.jpg';
 
 export const mockData = {
   company: {
@@ -20,7 +21,7 @@ export const mockData = {
     subtitle: "Experiencias diseñadas por personas para personas",
     description: "Creamos ideas que se convierten en experiencias inolvidables para tu marca",
     ctaText: "¡Agenda Consultoría GRATIS!",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwyfHxtYXJrZXRpbmclMjB0ZWFtfGVufDB8fHx8MTc3NDM3OTQyNXww&ixlib=rb-4.1.0&q=85"
+    image: femegaTeam
   },
 
   services: [

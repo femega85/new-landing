@@ -152,17 +152,4 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Widget positioning - Prevent overlap between Retell AI and Brevo */
-/* Brevo Conversations widget on the LEFT */
-iframe[src*="brevo"] {
-  left: 20px !important;
-  right: auto !important;
-  bottom: 20px !important;
-}
 
-/* Additional Brevo selectors */
-div[id*="brevo"],
-div[class*="brevo"] {
-  left: 20px !important;
-  right: auto !important;
-}

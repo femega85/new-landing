@@ -37,22 +37,8 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
           <div className="text-white space-y-8">
-            <div className="inline-block">
-              <span className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium border border-white/30">
-                🚀 El Futuro de Su Marca, HOY!
-              </span>
-            </div>
-            
             <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              {hero.title.split(' ').map((word, index) => (
-                <span
-                  key={index}
-                  className="inline-block animate-fadeInUp"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {word}{' '}
-                </span>
-              ))}
+              {hero.title}
             </h1>
 
             <p className="text-xl md:text-2xl text-white/90 font-light max-w-2xl">
@@ -107,18 +93,6 @@ const Hero = () => {
           <div className="hidden lg:block relative">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-pink-500 rounded-3xl transform rotate-6 opacity-20 blur-xl"></div>
-              <div className="relative bg-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/20 shadow-2xl">
-                <div className="space-y-4">
-                  <div className="h-4 bg-white/30 rounded-full w-3/4"></div>
-                  <div className="h-4 bg-white/20 rounded-full w-full"></div>
-                  <div className="h-4 bg-white/30 rounded-full w-5/6"></div>
-                  <div className="h-32 bg-white/20 rounded-2xl mt-6"></div>
-                  <div className="grid grid-cols-2 gap-4 mt-4">
-                    <div className="h-20 bg-white/30 rounded-xl"></div>
-                    <div className="h-20 bg-white/20 rounded-xl"></div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

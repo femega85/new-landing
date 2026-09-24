@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import femegaLogo from '../assets/femega-logo.png';
+import femegaLogoWhite from '../assets/femega-logo.png';
+import femegaLogoBlack from '../assets/femega-logo-black.png';
 import { Button } from './ui/button';
 
 const Header = () => {
@@ -34,15 +35,19 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex-shrink-0 cursor-pointer" onClick={() => scrollToSection('hero')}>
+          <div
+            className="flex-shrink-0 cursor-pointer"
+            onClick={() => scrollToSection('hero')}
+            style={{ padding: '0 0 40px 0' }}
+          >
             <img
-              src={femegaLogo}
+              src={isScrolled ? femegaLogoBlack : femegaLogoWhite}
               alt="FEMEGA logo"
               className="h-10 md:h-12 w-auto object-contain transition-all duration-300"
               style={{
-                transform: 'scale(2)',
+                transform: 'scale(3)',
                 transformOrigin: 'left center',
-                marginTop: '2em',
+                margin: '3em 0 0 0',
               }}
             />
           </div>
