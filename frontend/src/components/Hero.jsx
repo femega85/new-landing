@@ -80,12 +80,10 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           {/* Left Column - Text Content */}
           <div
-            className="text-white space-y-8 p-4 mt-24 sm:mt-0"
+            className="text-white space-y-8 rounded-2xl p-4 mt-24 sm:mt-0"
             style={{
               backgroundColor: 'rgba(0, 0, 0, 0.28)',
-              width: '100%',
-              minHeight: 'calc(100vh - 120px)',
-              borderRadius: '0px'
+              width: '100%'
             }}
           >
             <h1 className="text-5xl md:text-7xl font-black leading-[0.9] whitespace-pre-line">

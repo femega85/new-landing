@@ -187,7 +187,7 @@ export const mockData = {
   stats: [
     { label: "Años de Experiencia", value: "15+" },
     { label: "Marcas Atendidas", value: "50+" },
-    { label: "Eventos Realizados", value: "200+" },
+    { label: "Experiencias Realizadas", value: "200+" },
     { label: "Satisfacción Cliente", value: "98%" }
   ]
 };
