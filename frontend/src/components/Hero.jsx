@@ -1,7 +1,8 @@
 import React from 'react';
-import { ArrowRight, Play, Award, BriefcaseBusiness, CalendarRange, Smile } from 'lucide-react';
+import { ArrowRight, Play, Award, BriefcaseBusiness, CalendarRange } from 'lucide-react';
 import { Button } from './ui/button';
 import { mockData } from '../data/mock';
+import heartIcon from '../assets/corazon_cool.png';
 
 const Hero = () => {
   const { hero } = mockData;
@@ -131,7 +132,11 @@ const Hero = () => {
                 return (
                   <div key={index} className="flex flex-col items-center justify-center text-center">
                     <div className="mb-3 flex items-center justify-center text-white/80">
-                      <Icon className="h-24 w-24" />
+                      {index === 3 ? (
+                        <img src={heartIcon} alt="" className="h-24 w-24 object-contain" />
+                      ) : (
+                        <Icon className="h-24 w-24" />
+                      )}
                     </div>
                     <div className="text-3xl md:text-4xl font-bold text-white leading-none">
                       {stat.value}
