@@ -28,7 +28,7 @@ export const mockData = {
   hero: {
     title: "HACEMOS\nLO QUE LA I.A\nNO HACE",
     subtitle: "Experiencias diseñadas por personas para personas",
-    description: "Creamos ideas que se convierten en experiencias inolvidables para tu marca",
+    description: "Generamos ideas innovadoras y las convertimos en experiencias inolvidables para tu marca y sus audiencias.",
     ctaText: "¡Agenda Consultoría GRATIS!",
     image: femegaTeam,
     videoDesktop: "https://www.youtube.com/embed/yZRd3HJmHAg?autoplay=1&mute=1&loop=1&playlist=yZRd3HJmHAg&controls=0&showinfo=0&rel=0&modestbranding=1&vq=hd1080",
