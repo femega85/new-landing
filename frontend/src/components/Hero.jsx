@@ -3,6 +3,7 @@ import { ArrowRight, Play, Award, BriefcaseBusiness, CalendarRange, Smile } from
 import { Button } from './ui/button';
 import { mockData } from '../data/mock';
 import heartIcon from '../assets/corazon_cool.png';
+import experienceIcon from '../assets/experience.png';
 
 const Hero = () => {
   const { hero } = mockData;
@@ -132,7 +133,9 @@ const Hero = () => {
                 return (
                   <div key={index} className="flex flex-col items-center justify-center text-center">
                     <div className="mb-3 flex items-center justify-center text-white/80">
-                      {index === 3 ? (
+                      {index === 2 ? (
+                        <img src={experienceIcon} alt="" className="h-24 w-24 object-contain" />
+                      ) : index === 3 ? (
                         <img src={heartIcon} alt="" className="h-24 w-24 object-contain" />
                       ) : (
                         <Icon className="h-24 w-24" />
