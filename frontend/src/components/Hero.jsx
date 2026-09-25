@@ -6,6 +6,7 @@ import heartIcon from '../assets/corazon_cool.png';
 import experienceIcon from '../assets/experience.png';
 import planetIcon from '../assets/planeta.png';
 import targetIcon from '../assets/target.png';
+import jacketImage from '../assets/FEMEGA_Chaqueta.png';
 
 const Hero = () => {
   const { hero } = mockData;
@@ -150,7 +151,7 @@ const Hero = () => {
                     <div className="text-3xl md:text-4xl font-bold text-white leading-none">
                       {stat.value}
                     </div>
-                    <div className="text-sm text-white/70 mt-1 text-center">
+                    <div className="text-sm text-white/70 font-bold mt-1 text-center">
                       {stat.label}
                     </div>
                   </div>
@@ -160,12 +161,13 @@ const Hero = () => {
           </div>
 
           {/* Right Column - Visual Element */}
-          <div className="hidden lg:block relative">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-pink-500 rounded-3xl transform rotate-6 opacity-20 blur-xl"></div>
-            </div>
-          </div>
+          <div className="hidden lg:block" aria-hidden="true"></div>
         </div>
+        <img
+          src={jacketImage}
+          alt="FEMEGA"
+          className="hidden lg:block absolute right-0 -bottom-24 z-10 h-[clamp(620px,35vw,1100px)] w-auto max-w-full object-contain object-bottom pointer-events-none"
+        />
       </div>
 
       {/* Scroll Indicator */}

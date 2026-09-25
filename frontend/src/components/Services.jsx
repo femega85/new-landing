@@ -2,6 +2,10 @@ import React from 'react';
 import { Sparkles, Globe, Lightbulb, Check } from 'lucide-react';
 import { mockData } from '../data/mock';
 import { Card, CardContent } from './ui/card';
+import gradientBar from '../assets/femega-gradient-bar.svg';
+import eventsIcon from '../assets/eventos.png';
+import experienceIcon from '../assets/experience.png';
+import statueIcon from '../assets/estatua.png';
 
 const iconMap = {
   Sparkles: Sparkles,
@@ -27,6 +31,7 @@ const Services = () => {
           <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
             Nuestros Servicios
           </h2>
+          <img src={gradientBar} alt="" className="w-96 h-auto mx-auto mb-4" />
           <p className="text-xl text-gray-600">
             Creamos experiencias inolvidables que conectan tu marca con las personas
           </p>
@@ -36,6 +41,7 @@ const Services = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const IconComponent = iconMap[service.icon];
+            const hasImageIcon = ['Sparkles', 'Globe', 'Lightbulb'].includes(service.icon);
             return (
               <Card
                 key={service.id}
@@ -45,19 +51,25 @@ const Services = () => {
                 }}
               >
                 {/* Service Image */}
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                  
+                <div
+                  className="relative h-64 overflow-hidden"
+                  style={{
+                    background: 'linear-gradient(225deg, rgba(244, 212, 0, 0.82) 0%, rgba(167, 217, 42, 0.72) 18%, rgba(52, 198, 215, 0.75) 42%, rgba(239, 176, 197, 0.72) 68%, rgba(216, 0, 122, 0.82) 100%)'
+                  }}
+                >
                   {/* Icon */}
-                  <div className="absolute top-6 left-6">
-                    <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/30">
-                      <IconComponent className="text-white" size={32} />
-                    </div>
+                  <div className={hasImageIcon ? 'absolute inset-0 flex items-center justify-center' : 'absolute top-6 left-6'}>
+                    {service.icon === 'Sparkles' ? (
+                      <img src={eventsIcon} alt="" className="w-full h-full object-contain" />
+                    ) : service.icon === 'Globe' ? (
+                      <img src={experienceIcon} alt="" className="w-full h-full object-contain" />
+                    ) : service.icon === 'Lightbulb' ? (
+                      <img src={statueIcon} alt="" className="w-full h-full object-contain" />
+                    ) : (
+                      <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/30">
+                        <IconComponent className="text-white" size={32} />
+                      </div>
+                    )}
                   </div>
                 </div>
 

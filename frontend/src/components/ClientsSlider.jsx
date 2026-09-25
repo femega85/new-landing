@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { mockData } from '../data/mock';
+import gradientBar from '../assets/femega-gradient-bar.svg';
 
 const ClientsSlider = () => {
   const { clients } = mockData;
@@ -34,8 +35,9 @@ const ClientsSlider = () => {
           <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
             Marcas que han vivido nuestras experiencias
           </h2>
+          <img src={gradientBar} alt="" className="w-96 h-auto mx-auto mb-4" />
           <p className="text-xl text-gray-600">
-            Hemos trabajado con las marcas más reconocidas del mercado
+            Hemos trabajado con algunas de las marcas más reconocidas del mercado.
           </p>
         </div>
 

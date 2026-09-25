@@ -6,7 +6,9 @@ import abinbevLogo from '../assets/logo_bavaria_ab.png';
 import didiLogo from '../assets/logo_didi.png';
 import drugstoreLogo from '../assets/logo_drugstore.png';
 import isoverLogo from '../assets/logo_fiberglass-isover.png';
+import knaufLogo from '../assets/logo_knauf.png';
 import megalabsLogo from '../assets/logo_megalabs.png';
+import oneLogo from '../assets/logo_one.png';
 import saintGobainLogo from '../assets/logo_saint-gobain.png';
 import samsungLogo from '../assets/logo_samsung.png';
 
@@ -15,9 +17,9 @@ export const mockData = {
     name: "FEMEGA",
     tagline: "¡El futuro de su marca, HOY!",
     description: "Somos una agencia especializada en crear experiencias inolvidables para tu marca",
-    phone: "+57 606 345 4050",
+    phone: "+57 606 370 7141",
     mobile: "+57 304 353 6326",
-    email: "consultor@femega.com",
+    email: "experiencias@femega.com",
     whatsapp: "573043536326",
     addresses: [
       "Cra 49 #94-12, Bogotá",
@@ -27,7 +29,7 @@ export const mockData = {
 
   hero: {
     title: "HACEMOS\nLO QUE LA I.A\nNO HACE",
-    subtitle: "Experiencias diseñadas por personas para personas",
+    subtitle: "Experiencias diseñadas con amor por personas para otras personas",
     description: "Generamos ideas innovadoras y las convertimos en experiencias inolvidables para tu marca y sus audiencias.",
     ctaText: "¡Agenda Consultoría GRATIS!",
     image: femegaTeam,
@@ -124,7 +126,9 @@ export const mockData = {
     { name: "DiDi", logo: didiLogo },
     { name: "Isover", logo: isoverLogo },
     { name: "Megalabs", logo: megalabsLogo },
-    { name: "Drugstore", logo: drugstoreLogo }
+    { name: "Drugstore", logo: drugstoreLogo },
+    { name: "KNAUF", logo: knaufLogo },
+    { name: "ONE", logo: oneLogo }
   ],
 
   testimonials: [

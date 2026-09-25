@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { toast } from 'sonner';
+import gradientBar from '../assets/femega-gradient-bar.svg';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -98,7 +99,8 @@ const ContactForm = () => {
               >
                 ¡Agenda Tu Consultoría Gratuita!
               </h2>
-              <p className="text-xl text-white leading-relaxed">
+              <img src={gradientBar} alt="" className="w-96 h-auto mb-4" />
+              <p className="text-xl text-white font-bold leading-relaxed">
                 Descubre cómo podemos transformar tu marca en una experiencia inolvidable.
                 Nuestro equipo está listo para asesorarte.
               </p>
@@ -156,10 +158,10 @@ const ContactForm = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    Completa tus datos
+                      Dejanos tus datos
                   </h3>
-                  <p className="text-gray-600">
-                    Y comienza tu transformación hoy
+                  <p className="text-gray-600 font-bold">
+                    ¡Creemos juntos esa gran experiencias para tu marca!
                   </p>
                 </div>
 

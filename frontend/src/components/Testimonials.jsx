@@ -2,6 +2,7 @@ import React from 'react';
 import { Star, Quote } from 'lucide-react';
 import { mockData } from '../data/mock';
 import { Card, CardContent } from './ui/card';
+import gradientBar from '../assets/femega-gradient-bar.svg';
 import {
   Carousel,
   CarouselContent,
@@ -20,8 +21,9 @@ const Testimonials = () => {
           <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
             Nuestros clientes dicen...
           </h2>
+          <img src={gradientBar} alt="" className="w-96 h-auto mx-auto mb-4" />
           <p className="text-xl text-gray-600">
-            La satisfacción de nuestros clientes es nuestro mejor indicador de éxito
+            La mejor forma de medir el éxito de lo que hacemos es a través de quienes han vivido la experiencia FEMEGA.
           </p>
         </div>
 
@@ -98,7 +100,7 @@ const Testimonials = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-xl text-gray-600 mb-6">
+            <p className="text-xl text-gray-600 font-bold mb-6">
             ¿Quieres ser parte de nuestras historias de éxito?
           </p>
           <button
@@ -108,7 +110,7 @@ const Testimonials = () => {
             }}
             className="bg-black text-white hover:bg-[#d6007f] px-10 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-none border border-white/10"
           >
-            ¡Comienza Tu Transformación Hoy!
+            ¡Agenda tu consultoría gratis hoy!
           </button>
         </div>
       </div>

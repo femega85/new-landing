@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { mockData } from '../data/mock';
 import { Card, CardContent } from './ui/card';
+import gradientBar from '../assets/femega-gradient-bar.svg';
 
 const VideoShowcase = () => {
   const { successVideos } = mockData;
@@ -37,8 +38,9 @@ const VideoShowcase = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Casos de Éxito
           </h2>
+          <img src={gradientBar} alt="" className="w-96 h-auto mx-auto mb-4" />
           <p className="text-xl text-gray-300">
-            Descubre cómo hemos transformado marcas a través de experiencias memorables
+            Descubre cómo transformamos marcas en experiencias que conectan, inspiran y permanecen en la mente y el corazón de sus audiencias.
           </p>
         </div>
 
