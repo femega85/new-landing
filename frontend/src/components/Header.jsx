@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import femegaLogoWhite from '../assets/femega-logo.png';
-import femegaLogoBlack from '../assets/femega-logo-black.png';
+import { Menu, X, Globe } from 'lucide-react';
+import femegaLogoWhite from '../assets/logo-femega-slogan-white-esp-svg.svg';
+import femegaLogoBlack from '../assets/logo-femega-slogan-black-esp-svg.svg';
 import { Button } from './ui/button';
 
 const Header = () => {
@@ -38,17 +38,11 @@ const Header = () => {
           <div
             className="flex-shrink-0 cursor-pointer"
             onClick={() => scrollToSection('hero')}
-            style={{ padding: '0 0 40px 0' }}
           >
             <img
               src={isScrolled ? femegaLogoBlack : femegaLogoWhite}
               alt="FEMEGA logo"
-              className="h-10 md:h-12 w-auto object-contain transition-all duration-300"
-              style={{
-                transform: 'scale(3)',
-                transformOrigin: 'left center',
-                margin: '3em 0 0 0',
-              }}
+              className="h-auto w-[196px] max-w-full object-contain transition-all duration-300"
             />
           </div>
 
@@ -56,7 +50,7 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection('servicios')}
-              className={`text-sm font-medium transition-colors hover:text-orange-500 ${
+              className={`text-[1.1rem] leading-5 font-bold transition-colors hover:text-[#d6007f] ${
                 isScrolled ? 'text-gray-700' : 'text-white'
               }`}
             >
@@ -64,7 +58,7 @@ const Header = () => {
             </button>
             <button
               onClick={() => scrollToSection('casos-exito')}
-              className={`text-sm font-medium transition-colors hover:text-orange-500 ${
+              className={`text-[1.1rem] leading-5 font-bold transition-colors hover:text-[#d6007f] ${
                 isScrolled ? 'text-gray-700' : 'text-white'
               }`}
             >
@@ -72,7 +66,7 @@ const Header = () => {
             </button>
             <button
               onClick={() => scrollToSection('testimonios')}
-              className={`text-sm font-medium transition-colors hover:text-orange-500 ${
+              className={`text-[1.1rem] leading-5 font-bold transition-colors hover:text-[#d6007f] ${
                 isScrolled ? 'text-gray-700' : 'text-white'
               }`}
             >
@@ -80,7 +74,7 @@ const Header = () => {
             </button>
             <button
               onClick={() => scrollToSection('contacto')}
-              className={`text-sm font-medium transition-colors hover:text-orange-500 ${
+              className={`text-[1.1rem] leading-5 font-bold transition-colors hover:text-[#d6007f] ${
                 isScrolled ? 'text-gray-700' : 'text-white'
               }`}
             >
@@ -88,10 +82,21 @@ const Header = () => {
             </button>
             <Button
               onClick={() => scrollToSection('contacto')}
-              className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full font-medium transition-all hover:scale-105"
+              className="bg-black text-white hover:bg-[#d6007f] px-6 py-2 rounded-full font-semibold transition-all hover:scale-105 shadow-none border border-white/10"
             >
-              Agenda Gratis
+              ¡Consultoría Gratis!
             </Button>
+            <button
+              type="button"
+              aria-label="Cambiar idioma a inglés"
+              className={`flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-200 ${
+                isScrolled
+                  ? 'border-gray-300 bg-white text-gray-800 hover:border-gray-400 hover:bg-gray-50'
+                  : 'border-white/30 bg-black/20 text-white hover:border-white/60 hover:bg-white/10'
+              }`}
+            >
+              <Globe size={18} />
+            </button>
           </nav>
 
           {/* Mobile menu button */}
@@ -135,7 +140,7 @@ const Header = () => {
               </button>
               <Button
                 onClick={() => scrollToSection('contacto')}
-                className="bg-orange-500 hover:bg-orange-600 text-white w-full rounded-full font-medium"
+                className="bg-black text-white hover:bg-[#d6007f] w-full rounded-full font-medium shadow-none border border-white/10"
               >
                 Agenda Gratis
               </Button>

@@ -24,7 +24,7 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
             Nuestros Servicios
           </h2>
           <p className="text-xl text-gray-600">
@@ -62,7 +62,7 @@ const Services = () => {
                 </div>
 
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#d6007f] transition-colors">
                     {service.title}
                   </h3>
                   
@@ -82,7 +82,7 @@ const Services = () => {
 
                   <button
                     onClick={scrollToContact}
-                    className="w-full bg-gray-100 hover:bg-orange-500 text-gray-700 hover:text-white py-3 rounded-lg font-medium transition-all duration-300 group-hover:shadow-lg"
+                    className="w-full bg-black text-white hover:bg-[#d6007f] py-3 rounded-lg font-medium transition-all duration-300 shadow-none border border-white/10"
                   >
                     Más Información
                   </button>
@@ -93,11 +93,16 @@ const Services = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-20 bg-gradient-to-r from-orange-500 to-pink-600 rounded-3xl p-12 text-center text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-            <div className="absolute bottom-0 right-0 w-64 h-64 bg-white rounded-full translate-x-1/2 translate-y-1/2"></div>
-          </div>
+        <div
+          className="mt-20 rounded-3xl p-12 text-center text-white relative overflow-hidden"
+          style={{
+            backgroundImage: `linear-gradient(135deg, rgba(244, 212, 0, 0.7) 0%, rgba(168, 217, 42, 0.7) 18%, rgba(52, 198, 215, 0.7) 42%, rgba(239, 176, 197, 0.7) 68%, rgba(216, 0, 122, 0.7) 100%), url(${mockData.hero.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="absolute inset-0 bg-black/10" />
           <div className="relative z-10">
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
               ¿Listo para crear experiencias inolvidables?
@@ -107,7 +112,7 @@ const Services = () => {
             </p>
             <button
               onClick={scrollToContact}
-              className="bg-white text-orange-600 hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-xl"
+              className="bg-black text-white hover:bg-[#d6007f] px-10 py-4 rounded-full text-lg font-black tracking-wide transition-all hover:scale-105 border border-white/10 shadow-none"
             >
               ¡Agenda Ahora GRATIS!
             </button>

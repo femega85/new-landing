@@ -69,22 +69,36 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contacto" className="py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
+    <section id="contacto" className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f4d400 0%, #a8d92a 18%, #34c6d7 42%, #efb0c5 68%, #d8007a 100%)' }}>
       {/* Background Effects */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500 rounded-full filter blur-3xl"></div>
+      <div className="absolute inset-0 z-0">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, #f4d400 0%, #a8d92a 18%, #34c6d7 42%, #efb0c5 68%, #d8007a 100%)'
+          }}
+        ></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Left Column - Info */}
-          <div className="text-white space-y-8">
+          <div
+            className="text-white space-y-8 rounded-2xl p-4 h-full"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.28)' }}
+          >
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2
+                className="text-4xl md:text-5xl font-bold mb-4 inline-block px-3 py-1 rounded-md"
+                style={{
+                  backgroundColor: 'transparent',
+                  color: '#fff',
+                  boxShadow: 'none'
+                }}
+              >
                 ¡Agenda Tu Consultoría Gratuita!
               </h2>
-              <p className="text-xl text-gray-300 leading-relaxed">
+              <p className="text-xl text-white leading-relaxed">
                 Descubre cómo podemos transformar tu marca en una experiencia inolvidable.
                 Nuestro equipo está listo para asesorarte.
               </p>
@@ -92,55 +106,40 @@ const ContactForm = () => {
 
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                  <CheckCircle className="text-orange-500" size={24} />
+                <div className="w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                  <CheckCircle className="text-white" size={24} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-1">Consultoría Personalizada</h3>
-                  <p className="text-gray-400">Analizamos tus necesidades y creamos una estrategia a medida</p>
+                  <h3 className="font-semibold text-lg mb-1 text-white">Consultoría Personalizada</h3>
+                  <p className="text-white/80">Analizamos tus necesidades y creamos una estrategia a medida</p>
                 </div>
               </div>
 
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                  <CheckCircle className="text-orange-500" size={24} />
+                <div className="w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                  <CheckCircle className="text-white" size={24} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-1">Sin Compromiso</h3>
-                  <p className="text-gray-400">Primera consultoría completamente gratuita</p>
+                  <h3 className="font-semibold text-lg mb-1 text-white">Sin Compromiso</h3>
+                  <p className="text-white/80">Primera consultoría completamente gratuita</p>
                 </div>
               </div>
 
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                  <CheckCircle className="text-orange-500" size={24} />
+                <div className="w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                  <CheckCircle className="text-white" size={24} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-1">Respuesta Rápida</h3>
-                  <p className="text-gray-400">Te contactamos en menos de 24 horas</p>
+                  <h3 className="font-semibold text-lg mb-1 text-white">Respuesta Rápida</h3>
+                  <p className="text-white/80">Te contactamos en menos de 24 horas</p>
                 </div>
               </div>
             </div>
 
-            {/* Contact Info */}
-            <div className="pt-8 border-t border-gray-700">
-              <p className="text-gray-400 mb-3">O contáctanos directamente:</p>
-              <div className="space-y-2">
-                <p className="text-white">
-                  <span className="text-gray-400">📞</span> +57 606 345 4050
-                </p>
-                <p className="text-white">
-                  <span className="text-gray-400">📱</span> +57 304 353 6326
-                </p>
-                <p className="text-white">
-                  <span className="text-gray-400">✉️</span> consultor@femega.com
-                </p>
-              </div>
-            </div>
           </div>
 
           {/* Right Column - Form */}
-          <div className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl">
+          <div className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl h-full">
             {isSuccess ? (
               <div className="text-center py-12">
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -228,7 +227,7 @@ const ContactForm = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white h-12 text-lg font-semibold rounded-lg transition-all hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+                  className="w-full bg-black text-white hover:bg-[#d6007f] h-12 text-lg font-semibold rounded-lg transition-all hover:scale-105 shadow-none border border-white/10 disabled:opacity-50 disabled:hover:scale-100"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center">

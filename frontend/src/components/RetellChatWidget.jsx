@@ -9,8 +9,8 @@ const RetellChatWidget = () => {
   const agentId = 'agent_3ea96bf2f35bacfb29d9d25d64';
   const agentVersion = 0;
   const title = 'Chat con FEMEGA';
-  const customColor = '#f97316'; // Orange color matching FEMEGA branding
-  const botName = 'Asistente FEMEGA';
+  const customColor = '#66a700'; // Match the green FEMEGA widget branding
+  const botName = 'FEMEGA AI';
 
   useEffect(() => {
     // Check if script already exists to prevent duplicate loading

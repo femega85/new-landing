@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play, Award, BriefcaseBusiness, CalendarRange, Smile } from 'lucide-react';
 import { Button } from './ui/button';
 import { mockData } from '../data/mock';
 
@@ -15,14 +15,57 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={hero.image}
-          alt="FEMEGA Hero"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/90 via-orange-600/80 to-pink-700/90"></div>
+      {/* Background Video with Overlay */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {hero.videoDesktop || hero.videoMobile ? (
+          <>
+            <div className="hidden sm:block absolute inset-0">
+              <iframe
+                title="FEMEGA hero background video desktop"
+                className="h-full w-full pointer-events-none"
+                src={hero.videoDesktop || hero.videoMobile}
+                allow="autoplay; encrypted-media; fullscreen"
+                allowFullScreen
+                frameBorder="0"
+                style={{
+                  filter: 'brightness(0.7) contrast(1.1)',
+                  objectFit: 'contain',
+                  objectPosition: 'center center'
+                }}
+              />
+            </div>
+            <div className="block sm:hidden absolute inset-x-0 top-0 z-0" style={{ height: '56.25vw', maxHeight: '72vh' }}>
+              <iframe
+                title="FEMEGA hero background video mobile"
+                className="pointer-events-none"
+                src={hero.videoMobile || hero.videoDesktop}
+                allow="autoplay; encrypted-media; fullscreen"
+                allowFullScreen
+                frameBorder="0"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  filter: 'brightness(0.7) contrast(1.1)',
+                  objectFit: 'cover',
+                  objectPosition: 'center top',
+                  transform: 'translateY(0px)'
+                }}
+              />
+            </div>
+          </>
+        ) : (
+          <img
+            src={hero.image}
+            alt="FEMEGA Hero"
+            className="w-full h-full object-cover"
+          />
+        )}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(225deg, rgba(244, 212, 0, 0.82) 0%, rgba(167, 217, 42, 0.72) 18%, rgba(52, 198, 215, 0.75) 42%, rgba(239, 176, 197, 0.72) 68%, rgba(216, 0, 122, 0.82) 100%)'
+          }}
+        ></div>
       </div>
 
       {/* Animated Background Elements */}
@@ -33,59 +76,74 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 w-full px-0 sm:px-6 lg:px-8 pt-28 pb-16 sm:py-32">
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           {/* Left Column - Text Content */}
-          <div className="text-white space-y-8">
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          <div
+            className="text-white space-y-8 p-4 mt-24 sm:mt-0"
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.28)',
+              width: '100%',
+              minHeight: 'calc(100vh - 120px)',
+              borderRadius: '0px'
+            }}
+          >
+            <h1 className="text-5xl md:text-7xl font-black leading-[0.9] whitespace-pre-line">
               {hero.title}
             </h1>
 
-            <p className="text-xl md:text-2xl text-white/90 font-light max-w-2xl">
+            <p className="text-xl md:text-2xl text-white/90 font-medium max-w-2xl">
               {hero.subtitle}
             </p>
 
-            <p className="text-lg text-white/80 max-w-xl">
+            <p className="text-lg text-white/80 max-w-xl font-medium">
               {hero.description}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button
-                onClick={scrollToContact}
-                size="lg"
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-6 text-lg rounded-full font-semibold transition-all hover:scale-105 shadow-2xl hover:shadow-orange-500/50"
-              >
-                {hero.ctaText}
-                <ArrowRight className="ml-2" size={20} />
-              </Button>
-              
-              <Button
                 onClick={() => {
                   const element = document.getElementById('casos-exito');
                   if (element) element.scrollIntoView({ behavior: 'smooth' });
                 }}
                 size="lg"
-                variant="outline"
-                className="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border-2 border-white/30 px-8 py-6 text-lg rounded-full font-semibold transition-all hover:scale-105"
+                className="bg-black text-white hover:bg-[#d6007f] px-8 py-6 text-lg rounded-full font-semibold transition-all hover:scale-105 shadow-none border border-white/10"
               >
                 <Play className="mr-2" size={20} />
                 Ver Casos de Éxito
+              </Button>
+
+              <Button
+                onClick={scrollToContact}
+                size="lg"
+                className="bg-black text-white hover:bg-[#d6007f] px-8 py-6 text-lg rounded-full font-semibold transition-all hover:scale-105 shadow-none border border-white/10"
+              >
+                ¡Consultoría Gratis!
+                <ArrowRight className="ml-2" size={20} />
               </Button>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8">
-              {mockData.stats.map((stat, index) => (
-                <div key={index} className="text-center sm:text-left">
-                  <div className="text-3xl md:text-4xl font-bold text-white">
-                    {stat.value}
+              {mockData.stats.map((stat, index) => {
+                const statIcons = [Award, BriefcaseBusiness, CalendarRange, Smile];
+                const Icon = statIcons[index] || Award;
+
+                return (
+                  <div key={index} className="flex flex-col items-center justify-center text-center">
+                    <div className="mb-3 flex items-center justify-center text-white/80">
+                      <Icon className="h-24 w-24" />
+                    </div>
+                    <div className="text-3xl md:text-4xl font-bold text-white leading-none">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-white/70 mt-1 text-center">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="text-sm text-white/70 mt-1">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

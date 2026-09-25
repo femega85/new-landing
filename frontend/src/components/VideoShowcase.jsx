@@ -27,11 +27,8 @@ const VideoShowcase = () => {
   return (
     <section id="casos-exito" className="py-24 bg-gray-900 relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }}></div>
+      <div className="absolute inset-0" style={{ backgroundColor: '#000' }}>
+        <div className="absolute inset-0" style={{ backgroundColor: '#000' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

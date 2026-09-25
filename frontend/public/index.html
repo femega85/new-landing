@@ -44,7 +44,86 @@
             #emergent-badge {
                 display: none !important;
             }
+
+            .retell-fab {
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                background: #66a700;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 32px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+                transition: background 0.2s, transform 0.2s ease;
+                border: none;
+                padding: 0;
+                position: relative;
+                overflow: hidden;
+            }
         </style>
+
+        <script
+            id="retell-widget"
+            src="https://dashboard.retellai.com/retell-widget-v2.js"
+            type="module"
+            data-public-key="public_key_ef8cd85b088e9c6a7f395"
+            data-agent-id="agent_3ea96bf2f35bacfb29d9d25d64"
+            data-title="Chat con FEMEGA"
+            data-bot-name="FEMEGA AI"
+            data-color="#66a700"
+            data-popup-message="¡Hola!, ¿Con quien tengo el gusto?"
+            data-show-ai-popup="true"
+            data-show-ai-popup-time="5"
+            data-auto-open="false"
+        ></script>
+
+        <script>
+            setTimeout(() => {
+                const widget = document.querySelector('#retell-widget');
+                if (widget) {
+                    widget.setAttribute('data-auto-open', 'true');
+                }
+            }, 60000);
+
+            function replaceRetellFabText() {
+                const textNodes = [];
+                const walker = document.createTreeWalker(document.body || document.documentElement, NodeFilter.SHOW_TEXT);
+                let node;
+                while ((node = walker.nextNode())) {
+                    if (node.textContent && /Need support\?/i.test(node.textContent.trim())) {
+                        textNodes.push(node);
+                    }
+                }
+
+                textNodes.forEach((textNode) => {
+                    textNode.textContent = 'Chat FEMEGA';
+                });
+
+                document.querySelectorAll('*').forEach((el) => {
+                    if (el.textContent && /Need support\?/i.test(el.textContent.trim())) {
+                        el.textContent = 'Chat FEMEGA';
+                    }
+                });
+            }
+
+            const retellTextObserver = new MutationObserver(() => {
+                replaceRetellFabText();
+            });
+
+            if (document.body) {
+                retellTextObserver.observe(document.body, {
+                    childList: true,
+                    subtree: true,
+                    characterData: true,
+                });
+            }
+
+            setTimeout(replaceRetellFabText, 500);
+            setTimeout(replaceRetellFabText, 2000);
+        </script>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>

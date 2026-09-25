@@ -1,13 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.10324cbe.css",
-    "main.js": "/static/js/main.07be13c7.js",
+    "main.css": "/static/css/main.23214dc6.css",
+    "main.js": "/static/js/main.23ec3aba.js",
+    "static/media/femega_team.jpg": "/static/media/femega_team.fa67a20a2a4d07a85684.jpg",
+    "static/media/logo_saint-gobain.png": "/static/media/logo_saint-gobain.ab27d5880d59aa300218.png",
+    "static/media/logo_bavaria_ab.png": "/static/media/logo_bavaria_ab.01e2a498ed622b2d470d.png",
+    "static/media/logo_samsung.png": "/static/media/logo_samsung.6dd1296fe7334620fdc5.png",
+    "static/media/logo-femega-slogan-black-esp-svg.svg": "/static/media/logo-femega-slogan-black-esp-svg.7f3a254d3d90ed395a81ae61495b7e4c.svg",
+    "static/media/logo_drugstore.png": "/static/media/logo_drugstore.1f66a21bfe108a9077d2.png",
+    "static/media/logo_fiberglass-isover.png": "/static/media/logo_fiberglass-isover.743675ce60474a288c07.png",
+    "static/media/logo_megalabs.png": "/static/media/logo_megalabs.c9063a1cba9f84b1fd5c.png",
+    "static/media/logo_axa_xl.png": "/static/media/logo_axa_xl.9f3526cd87b0a14779a2.png",
+    "static/media/logo_adidas.png": "/static/media/logo_adidas.85c122201f060cd80691.png",
+    "static/media/logo-femega-slogan-white-esp-svg.svg": "/static/media/logo-femega-slogan-white-esp-svg.feacfd617aad892730ab532eb118c2f8.svg",
     "index.html": "/index.html",
-    "main.10324cbe.css.map": "/static/css/main.10324cbe.css.map",
-    "main.07be13c7.js.map": "/static/js/main.07be13c7.js.map"
+    "static/media/logo-femega-svg.svg": "/static/media/logo-femega-svg.40cb5d8ef56b228e49ccc580cc4e4d9a.svg",
+    "main.23214dc6.css.map": "/static/css/main.23214dc6.css.map",
+    "main.23ec3aba.js.map": "/static/js/main.23ec3aba.js.map"
   },
   "entrypoints": [
-    "static/css/main.10324cbe.css",
-    "static/js/main.07be13c7.js"
+    "static/css/main.23214dc6.css",
+    "static/js/main.23ec3aba.js"
   ]
 }

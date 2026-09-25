@@ -1,5 +1,14 @@
 // Mock data for FEMEGA landing page
 import femegaTeam from '../assets/femega_team.jpg';
+import adidasLogo from '../assets/logo_adidas.png';
+import axaLogo from '../assets/logo_axa_xl.png';
+import abinbevLogo from '../assets/logo_bavaria_ab.png';
+import didiLogo from '../assets/logo_didi.png';
+import drugstoreLogo from '../assets/logo_drugstore.png';
+import isoverLogo from '../assets/logo_fiberglass-isover.png';
+import megalabsLogo from '../assets/logo_megalabs.png';
+import saintGobainLogo from '../assets/logo_saint-gobain.png';
+import samsungLogo from '../assets/logo_samsung.png';
 
 export const mockData = {
   company: {
@@ -17,11 +26,13 @@ export const mockData = {
   },
 
   hero: {
-    title: "HACEMOS LO QUE LA I.A NO HACE",
+    title: "HACEMOS\nLO QUE LA I.A\nNO HACE",
     subtitle: "Experiencias diseñadas por personas para personas",
     description: "Creamos ideas que se convierten en experiencias inolvidables para tu marca",
     ctaText: "¡Agenda Consultoría GRATIS!",
-    image: femegaTeam
+    image: femegaTeam,
+    videoDesktop: "https://www.youtube.com/embed/yZRd3HJmHAg?autoplay=1&mute=1&loop=1&playlist=yZRd3HJmHAg&controls=0&showinfo=0&rel=0&modestbranding=1&vq=hd1080",
+    videoMobile: "https://www.youtube.com/embed/yZRd3HJmHAg?autoplay=1&mute=1&loop=1&playlist=yZRd3HJmHAg&controls=0&showinfo=0&rel=0&modestbranding=1&vq=hd1080"
   },
 
   services: [
@@ -42,7 +53,7 @@ export const mockData = {
       id: 2,
       icon: "Globe",
       title: "Experiencias Digitales",
-      description: "Diseñamos experiencias web y contenidos multimedia que sumergen al usuario y aumentan la interacción y la conversión.",
+      description: "Diseñamos experiencias web y contenidos multimedia que sumergen al usuario y elevan la conversión.",
       features: [
         "Sitios web",
         "Recorridos virtuales 360°",
@@ -105,16 +116,15 @@ export const mockData = {
   ],
 
   clients: [
-    { name: "KNAUF", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=KNAUF" },
-    { name: "SAINT-GOBAIN", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=SAINT-GOBAIN" },
-    { name: "AXA", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=AXA" },
-    { name: "Adidas", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=ADIDAS" },
-    { name: "ABInBev", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=ABINBEV" },
-    { name: "Samsung", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=SAMSUNG" },
-    { name: "DiDi", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=DIDI" },
-    { name: "Isover", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=ISOVER" },
-    { name: "Megalabs", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=MEGALABS" },
-    { name: "Drugstore", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=DRUGSTORE" }
+    { name: "SAINT-GOBAIN", logo: saintGobainLogo },
+    { name: "AXA", logo: axaLogo },
+    { name: "Adidas", logo: adidasLogo },
+    { name: "ABInBev", logo: abinbevLogo },
+    { name: "Samsung", logo: samsungLogo },
+    { name: "DiDi", logo: didiLogo },
+    { name: "Isover", logo: isoverLogo },
+    { name: "Megalabs", logo: megalabsLogo },
+    { name: "Drugstore", logo: drugstoreLogo }
   ],
 
   testimonials: [
