@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Play, Award, BriefcaseBusiness, CalendarRange } from 'lucide-react';
+import { ArrowRight, Play, Award, BriefcaseBusiness, CalendarRange, Smile } from 'lucide-react';
 import { Button } from './ui/button';
 import { mockData } from '../data/mock';
 import heartIcon from '../assets/corazon_cool.png';
