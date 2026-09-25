@@ -90,7 +90,7 @@ const Hero = () => {
               {hero.title}
             </h1>
 
-            <p className="text-xl md:text-2xl text-white/90 font-medium max-w-2xl">
+            <p className="text-xl md:text-2xl text-white/90 font-black max-w-2xl">
               {hero.subtitle}
             </p>
 
