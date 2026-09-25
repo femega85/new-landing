@@ -4,6 +4,8 @@ import { Button } from './ui/button';
 import { mockData } from '../data/mock';
 import heartIcon from '../assets/corazon_cool.png';
 import experienceIcon from '../assets/experience.png';
+import planetIcon from '../assets/planeta.png';
+import targetIcon from '../assets/target.png';
 
 const Hero = () => {
   const { hero } = mockData;
@@ -92,7 +94,7 @@ const Hero = () => {
               {hero.title}
             </h1>
 
-            <p className="text-xl md:text-2xl text-white/90 font-black max-w-2xl">
+            <p className="text-xl md:text-2xl text-white/90 font-bold max-w-2xl">
               {hero.subtitle}
             </p>
 
@@ -133,7 +135,11 @@ const Hero = () => {
                 return (
                   <div key={index} className="flex flex-col items-center justify-center text-center">
                     <div className="mb-3 flex items-center justify-center text-white/80">
-                      {index === 2 ? (
+                      {index === 0 ? (
+                        <img src={targetIcon} alt="" className="h-24 w-24 object-contain" />
+                      ) : index === 1 ? (
+                        <img src={planetIcon} alt="" className="h-24 w-24 object-contain" />
+                      ) : index === 2 ? (
                         <img src={experienceIcon} alt="" className="h-24 w-24 object-contain" />
                       ) : index === 3 ? (
                         <img src={heartIcon} alt="" className="h-24 w-24 object-contain" />

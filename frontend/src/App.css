@@ -98,12 +98,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f97316;
+  background: #000000;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ea580c;
+  background: #000000;
 }
 
 /* Selection Color */
