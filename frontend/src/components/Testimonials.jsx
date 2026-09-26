@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Star, Quote } from 'lucide-react';
 import { mockData } from '../data/mock';
 import { Card, CardContent } from './ui/card';
@@ -13,22 +13,53 @@ import {
 
 const Testimonials = () => {
   const { testimonials } = mockData;
+  const [carouselApi, setCarouselApi] = useState(null);
+
+  useEffect(() => {
+    if (!carouselApi) return undefined;
+
+    const mobileQuery = window.matchMedia('(max-width: 767px)');
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let intervalId;
+
+    const syncAutoplay = () => {
+      window.clearInterval(intervalId);
+      if (mobileQuery.matches && !reducedMotionQuery.matches) {
+        intervalId = window.setInterval(() => {
+          carouselApi.scrollNext();
+        }, 7000);
+      }
+    };
+
+    syncAutoplay();
+    mobileQuery.addEventListener('change', syncAutoplay);
+    reducedMotionQuery.addEventListener('change', syncAutoplay);
+
+    return () => {
+      window.clearInterval(intervalId);
+      mobileQuery.removeEventListener('change', syncAutoplay);
+      reducedMotionQuery.removeEventListener('change', syncAutoplay);
+    };
+  }, [carouselApi]);
 
   return (
-    <section id="testimonios" className="py-24 bg-gradient-to-b from-white to-gray-50">
+    <section id="testimonios" className="pt-24 pb-12 md:py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
             Nuestros clientes dicen...
           </h2>
-          <img src={gradientBar} alt="" className="w-96 h-auto mx-auto mb-4" />
+          <img src={gradientBar} alt="" className="w-96 max-w-full h-auto mx-auto mb-4" />
           <p className="text-xl text-gray-600">
             La mejor forma de medir el éxito de lo que hacemos es a través de quienes han vivido la experiencia FEMEGA.
           </p>
         </div>
 
         <div className="relative max-w-6xl mx-auto">
+          <div className="hidden pointer-events-none absolute inset-y-0 left-0 z-10 w-4 bg-gradient-to-r from-white via-white/90 to-transparent md:w-8 lg:hidden" aria-hidden="true"></div>
+          <div className="hidden pointer-events-none absolute inset-y-0 right-0 z-10 w-4 bg-gradient-to-l from-white via-white/90 to-transparent md:w-8 lg:hidden" aria-hidden="true"></div>
           <Carousel
+            setApi={setCarouselApi}
             opts={{
               loop: true,
               align: 'start',
@@ -36,19 +67,19 @@ const Testimonials = () => {
             }}
             className="w-full"
           >
-            <CarouselContent className="-ml-4">
+            <CarouselContent className="-ml-4" viewportClassName="overflow-hidden">
               {testimonials.map((testimonial, index) => (
                 <CarouselItem
                   key={testimonial.id}
                   className="pl-4 md:basis-1/2 xl:basis-1/3"
                 >
                   <Card
-                    className="group h-full hover:shadow-2xl transition-all duration-300 border-0 bg-white overflow-hidden"
+                    className="group w-full min-w-0 h-full shadow-[0_10px_24px_rgba(15,23,42,0.12)] hover:shadow-[0_18px_36px_rgba(15,23,42,0.16)] transition-all duration-300 border-0 bg-white overflow-hidden"
                     style={{
                       animationDelay: `${index * 0.1}s`,
                     }}
                   >
-                    <CardContent className="p-8 h-full flex flex-col">
+                    <CardContent className="p-8 h-full flex flex-col items-center text-center md:items-start md:text-left">
                       <div className="mb-6">
                         <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
                           <Quote className="text-white" size={24} />
@@ -84,7 +115,7 @@ const Testimonials = () => {
                           <div className="text-sm text-gray-500">
                             {testimonial.position}
                           </div>
-                          <div className="text-sm font-medium text-orange-600">
+                          <div className="text-sm font-medium text-[#d6007f]">
                             {testimonial.company}
                           </div>
                         </div>
@@ -94,13 +125,13 @@ const Testimonials = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="-left-3 md:-left-5 bg-white/90 hover:bg-white text-gray-700 shadow-md" />
-            <CarouselNext className="-right-3 md:-right-5 bg-white/90 hover:bg-white text-gray-700 shadow-md" />
+            <CarouselPrevious className="z-20 -left-3 md:-left-5 bg-white/90 hover:bg-white text-gray-700 shadow-md" />
+            <CarouselNext className="z-20 -right-3 md:-right-5 bg-white/90 hover:bg-white text-gray-700 shadow-md" />
           </Carousel>
         </div>
 
-        <div className="mt-16 text-center">
-            <p className="text-xl text-gray-600 font-bold mb-6">
+        <div className="mt-8 md:mt-16 text-center">
+            <p className="hidden md:block text-xl text-gray-600 font-bold mb-6">
             ¿Quieres ser parte de nuestras historias de éxito?
           </p>
           <button
@@ -108,7 +139,7 @@ const Testimonials = () => {
               const element = document.getElementById('contacto');
               if (element) element.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="bg-black text-white hover:bg-[#d6007f] px-10 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-none border border-white/10"
+            className="hidden md:inline-block bg-black text-white hover:bg-[#d6007f] px-10 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-none border border-white/10"
           >
             ¡Agenda tu consultoría gratis hoy!
           </button>

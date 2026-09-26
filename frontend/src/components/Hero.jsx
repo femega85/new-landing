@@ -19,7 +19,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-0 lg:min-h-screen flex items-center overflow-hidden">
       {/* Background Video with Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {hero.videoDesktop || hero.videoMobile ? (
@@ -39,7 +39,7 @@ const Hero = () => {
                 }}
               />
             </div>
-            <div className="block sm:hidden absolute inset-x-0 top-0 z-0" style={{ height: '56.25vw', maxHeight: '72vh' }}>
+            <div className="block sm:hidden absolute inset-x-0 top-24 z-0" style={{ height: '56.25vw', maxHeight: '72vh' }}>
               <iframe
                 title="FEMEGA hero background video mobile"
                 className="pointer-events-none"
@@ -65,12 +65,7 @@ const Hero = () => {
             className="w-full h-full object-cover"
           />
         )}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(225deg, rgba(244, 212, 0, 0.82) 0%, rgba(167, 217, 42, 0.72) 18%, rgba(52, 198, 215, 0.75) 42%, rgba(239, 176, 197, 0.72) 68%, rgba(216, 0, 122, 0.82) 100%)'
-          }}
-        ></div>
+        <div className="absolute inset-0 hero-gradient-overlay"></div>
       </div>
 
       {/* Animated Background Elements */}
@@ -81,17 +76,17 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full px-0 sm:px-6 lg:px-8 pt-28 pb-16 sm:py-32">
+      <div className="relative z-10 w-full px-0 sm:px-6 lg:px-8 pt-[calc(56.25vw+6rem)] pb-0 sm:py-32">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           {/* Left Column - Text Content */}
           <div
-            className="text-white space-y-8 rounded-2xl p-4 mt-24 sm:mt-0"
+            className="text-white space-y-8 rounded-none sm:rounded-2xl p-4 mt-0 sm:mt-0"
             style={{
               backgroundColor: 'rgba(0, 0, 0, 0.28)',
               width: '100%'
             }}
           >
-            <h1 className="text-5xl md:text-7xl font-black leading-[0.9] whitespace-pre-line">
+            <h1 className="text-4xl md:text-7xl font-black leading-[0.9] whitespace-pre-line">
               {hero.title}
             </h1>
 
@@ -166,12 +161,12 @@ const Hero = () => {
         <img
           src={jacketImage}
           alt="FEMEGA"
-          className="hidden lg:block absolute right-0 -bottom-24 z-10 h-[clamp(620px,35vw,1100px)] w-auto max-w-full object-contain object-bottom pointer-events-none"
+          className="hidden lg:block absolute right-0 -bottom-24 z-10 h-[420px] xl:h-[clamp(620px,35vw,1100px)] w-auto max-w-full object-contain object-bottom pointer-events-none"
         />
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+      <div className="hidden sm:block absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
         <div className="animate-bounce">
           <div className="w-8 h-12 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
             <div className="w-1 h-3 bg-white/50 rounded-full animate-pulse"></div>

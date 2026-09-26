@@ -38,7 +38,7 @@ const VideoShowcase = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Casos de Éxito
           </h2>
-          <img src={gradientBar} alt="" className="w-96 h-auto mx-auto mb-4" />
+          <img src={gradientBar} alt="" className="w-96 max-w-full h-auto mx-auto mb-4" />
           <p className="text-xl text-gray-300">
             Descubre cómo transformamos marcas en experiencias que conectan, inspiran y permanecen en la mente y el corazón de sus audiencias.
           </p>
@@ -50,11 +50,11 @@ const VideoShowcase = () => {
           <div className="relative overflow-hidden rounded-3xl">
             <Card className="bg-gray-800 border-0 overflow-hidden">
               <CardContent className="p-0">
-                <div className="relative group cursor-pointer" onClick={() => openVideo(successVideos[currentIndex])}>
+                <div className="relative group cursor-pointer aspect-video bg-black" onClick={() => openVideo(successVideos[currentIndex])}>
                   <img
                     src={successVideos[currentIndex].thumbnail}
                     alt={successVideos[currentIndex].title}
-                    className="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                   />
                   
                   {/* Overlay */}
@@ -67,20 +67,20 @@ const VideoShowcase = () => {
                     </div>
                   </div>
 
-                  {/* Video Info */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <div className="flex items-center mb-3">
-                      <span className="bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-medium">
-                        {successVideos[currentIndex].client}
-                      </span>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white">
-                      {successVideos[currentIndex].title}
-                    </h3>
-                  </div>
                 </div>
               </CardContent>
             </Card>
+
+            <div className="mt-6 px-6 md:px-8">
+              <div className="flex items-center mb-3">
+                <span className="bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                  {successVideos[currentIndex].client}
+                </span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white break-words">
+                {successVideos[currentIndex].title}
+              </h3>
+            </div>
 
             {/* Navigation Arrows */}
             <button
@@ -102,8 +102,17 @@ const VideoShowcase = () => {
             {successVideos.map((video, index) => (
               <div
                 key={video.id}
-                onClick={() => setCurrentIndex(index)}
-                className={`relative cursor-pointer rounded-lg overflow-hidden transition-all ${
+                onClick={() => openVideo(video)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openVideo(video);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label={`Reproducir ${video.title}`}
+                className={`relative cursor-pointer rounded-lg overflow-hidden transition-all aspect-video ${
                   index === currentIndex
                     ? 'ring-4 ring-orange-500 scale-105'
                     : 'opacity-60 hover:opacity-100'
@@ -112,7 +121,7 @@ const VideoShowcase = () => {
                 <img
                   src={video.thumbnail}
                   alt={video.title}
-                  className="w-full h-24 object-cover"
+                  className="w-full h-full object-contain bg-black"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                   <Play className="text-white" size={20} />

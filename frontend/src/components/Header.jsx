@@ -33,7 +33,7 @@ const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24 sm:h-20 pt-4 pb-2 sm:pt-0 sm:pb-0">
           {/* Logo */}
           <div
             className="flex-shrink-0 cursor-pointer"
@@ -47,7 +47,7 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden xl:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection('servicios')}
               className={`text-[1.1rem] leading-5 font-bold transition-colors hover:text-[#d6007f] ${
@@ -102,7 +102,7 @@ const Header = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden p-2 rounded-lg transition-colors ${
+            className={`xl:hidden p-3 rounded-lg transition-colors ${
               isScrolled ? 'text-gray-700' : 'text-white'
             }`}
           >
@@ -112,7 +112,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 bg-white rounded-lg shadow-xl mt-2">
+          <div className="xl:hidden py-4 bg-white rounded-lg shadow-xl mt-2">
             <div className="flex flex-col space-y-3 px-4">
               <button
                 onClick={() => scrollToSection('servicios')}

@@ -89,6 +89,24 @@ html {
 }
 
 /* Custom Scrollbar */
+.hero-gradient-overlay {
+  background: linear-gradient(225deg, rgba(244, 212, 0, 0.82) 0%, rgba(167, 217, 42, 0.72) 18%, rgba(52, 198, 215, 0.75) 42%, rgba(239, 176, 197, 0.72) 68%, rgba(216, 0, 122, 0.82) 100%);
+}
+
+@media (max-width: 639px) {
+  .hero-gradient-overlay {
+    transform: scaleY(-1);
+  }
+
+  html {
+    scrollbar-width: none;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -122,6 +140,17 @@ html {
 button,
 a {
   transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Hover effects */

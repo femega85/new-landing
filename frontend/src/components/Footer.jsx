@@ -15,17 +15,17 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-4 gap-12">
           {/* Company Info */}
-          <div className="md:col-span-2">
-            <div className="w-[280px] max-w-full">
+          <div className="md:col-span-2 text-center md:text-left">
+            <div className="w-[280px] max-w-full mx-auto md:mx-0">
               <img
                 src={femegaLogoSvg}
                 alt="FEMEGA logo"
                 className="h-20 md:h-24 w-full object-contain"
               />
             </div>
-            <p className="text-xl w-[280px] max-w-full" style={{ color: '#ffffff' }}>{company.tagline}</p>
+            <p className="text-xl w-[280px] max-w-full mx-auto md:mx-0" style={{ color: '#ffffff' }}>{company.tagline}</p>
             {/* Social Media */}
-            <div className="flex gap-4 mt-8">
+            <div className="flex justify-center md:justify-start gap-4 mt-8">
               <a
                 href={socialMedia.linkedin}
                 target="_blank"
@@ -189,7 +189,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm mb-4 md:mb-0" style={{ color: '#ffffff' }}>
+            <p className="text-sm text-center md:text-left mb-4 md:mb-0" style={{ color: '#ffffff' }}>
               © {new Date().getFullYear()} {company.name}. Todos los derechos reservados.
             </p>
             <div className="flex gap-6 text-sm">

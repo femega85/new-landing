@@ -83,15 +83,15 @@ export const mockData = {
     {
       id: 1,
       title: "Memorias Convención Ventas Knauf 2025",
-      videoId: "sPRUPnoTNp0",
-      thumbnail: "https://img.youtube.com/vi/sPRUPnoTNp0/maxresdefault.jpg",
+      videoId: "2M-ETIgoQvE",
+      thumbnail: "https://img.youtube.com/vi/2M-ETIgoQvE/maxresdefault.jpg",
       client: "Knauf"
     },
     {
       id: 2,
       title: "Video 10 años Knauf",
-      videoId: "q4Hed4XMz0A",
-      thumbnail: "https://img.youtube.com/vi/q4Hed4XMz0A/maxresdefault.jpg",
+      videoId: "9boxFtb40Hw",
+      thumbnail: "https://img.youtube.com/vi/9boxFtb40Hw/maxresdefault.jpg",
       client: "Knauf"
     },
     {
