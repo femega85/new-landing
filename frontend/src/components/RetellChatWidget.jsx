@@ -41,6 +41,7 @@ const RetellChatWidget = () => {
       script.setAttribute('data-agent-version', agentVersion.toString());
       script.setAttribute('data-title', title);
       script.setAttribute('data-bot-name', botName);
+      script.setAttribute('data-fab-text', 'Chat FEMEGA');
       script.setAttribute('data-color', customColor);
 
       // Handle script load events

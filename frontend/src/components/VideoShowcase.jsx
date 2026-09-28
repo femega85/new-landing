@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { mockData } from '../data/mock';
 import { Card, CardContent } from './ui/card';
@@ -7,7 +7,39 @@ import gradientBar from '../assets/femega-gradient-bar.svg';
 const VideoShowcase = () => {
   const { successVideos } = mockData;
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedVideoId, setSelectedVideoId] = useState(null);
+  const [videoTitles, setVideoTitles] = useState({});
+
+  const videos = successVideos.map((video) => ({
+    ...video,
+    title: videoTitles[video.id] || video.title
+  }));
+  const selectedVideo = videos.find((video) => video.id === selectedVideoId);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    Promise.all(successVideos.map(async (video) => {
+      const videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`;
+      const metadataUrl = `https://noembed.com/embed?url=${encodeURIComponent(videoUrl)}`;
+
+      try {
+        const response = await fetch(metadataUrl, { signal: controller.signal });
+        if (!response.ok) return null;
+
+        const metadata = await response.json();
+        return metadata.title ? [video.id, metadata.title] : null;
+      } catch {
+        return null;
+      }
+    })).then((entries) => {
+      if (!controller.signal.aborted) {
+        setVideoTitles(Object.fromEntries(entries.filter(Boolean)));
+      }
+    });
+
+    return () => controller.abort();
+  }, [successVideos]);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % successVideos.length);
@@ -18,15 +50,15 @@ const VideoShowcase = () => {
   };
 
   const openVideo = (video) => {
-    setSelectedVideo(video);
+    setSelectedVideoId(video.id);
   };
 
   const closeVideo = () => {
-    setSelectedVideo(null);
+    setSelectedVideoId(null);
   };
 
   return (
-    <section id="casos-exito" className="py-24 bg-gray-900 relative overflow-hidden">
+    <section id="casos-exito" className="pt-12 pb-24 bg-gray-900 relative overflow-hidden sm:py-24">
       {/* Background Pattern */}
       <div className="absolute inset-0" style={{ backgroundColor: '#000' }}>
         <div className="absolute inset-0" style={{ backgroundColor: '#000' }}></div>
@@ -50,10 +82,10 @@ const VideoShowcase = () => {
           <div className="relative overflow-hidden rounded-3xl">
             <Card className="bg-gray-800 border-0 overflow-hidden">
               <CardContent className="p-0">
-                <div className="relative group cursor-pointer aspect-video bg-black" onClick={() => openVideo(successVideos[currentIndex])}>
+                <div className="relative group cursor-pointer aspect-video bg-black" onClick={() => openVideo(videos[currentIndex])}>
                   <img
-                    src={successVideos[currentIndex].thumbnail}
-                    alt={successVideos[currentIndex].title}
+                    src={videos[currentIndex].thumbnail}
+                    alt={videos[currentIndex].title}
                     className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                   />
                   
@@ -72,13 +104,8 @@ const VideoShowcase = () => {
             </Card>
 
             <div className="mt-6 px-6 md:px-8">
-              <div className="flex items-center mb-3">
-                <span className="bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-medium">
-                  {successVideos[currentIndex].client}
-                </span>
-              </div>
               <h3 className="text-2xl md:text-3xl font-bold text-white break-words">
-                {successVideos[currentIndex].title}
+                {videos[currentIndex].title}
               </h3>
             </div>
 
@@ -99,7 +126,7 @@ const VideoShowcase = () => {
 
           {/* Thumbnail Navigation */}
           <div className="mt-8 grid grid-cols-2 md:grid-cols-5 gap-4">
-            {successVideos.map((video, index) => (
+            {videos.map((video, index) => (
               <div
                 key={video.id}
                 onClick={() => openVideo(video)}

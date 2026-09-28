@@ -115,6 +115,9 @@ const Testimonials = () => {
                           <div className="text-sm text-gray-500">
                             {testimonial.position}
                           </div>
+                          <div className="text-sm text-gray-500">
+                            {testimonial.city}
+                          </div>
                           <div className="text-sm font-medium text-[#d6007f]">
                             {testimonial.company}
                           </div>

@@ -42,10 +42,16 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      // Mock API call - will be replaced with actual Brevo API integration
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      console.log('Lead registered:', formData);
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.detail || 'No se pudo enviar el formulario. Intenta nuevamente.');
+      }
       
       setIsSuccess(true);
       toast.success('¡Registro exitoso! Nos contactaremos pronto.');
@@ -63,7 +69,7 @@ const ContactForm = () => {
       }, 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast.error('Hubo un error. Por favor intenta nuevamente.');
+      toast.error(error.message || 'Hubo un error. Por favor intenta nuevamente.');
     } finally {
       setIsSubmitting(false);
     }
@@ -97,7 +103,7 @@ const ContactForm = () => {
                   boxShadow: 'none'
                 }}
               >
-                ¡Agenda Tu Consultoría Gratuita!
+                ¡Agenda tu consultoría gratuita!
               </h2>
               <img src={gradientBar} alt="" className="w-full max-w-full h-auto mb-4" />
               <p className="text-xl text-white font-bold break-words leading-relaxed">
@@ -238,7 +244,7 @@ const ContactForm = () => {
                     </span>
                   ) : (
                     <span className="flex items-center justify-center">
-                      Agenda Tu Consultoría GRATIS
+                      Agenda tu consultoría GRATIS!
                       <Send className="ml-2" size={20} />
                     </span>
                   )}

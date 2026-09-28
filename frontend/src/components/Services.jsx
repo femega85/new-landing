@@ -119,14 +119,14 @@ const Services = () => {
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
               ¿Listo para crear experiencias inolvidables?
             </h3>
-            <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+            <p className="text-xl mb-8 font-semibold text-white/90 max-w-2xl mx-auto">
               Agenda una consultoría gratuita y descubre cómo podemos llevar tu marca al siguiente nivel
             </p>
             <button
               onClick={scrollToContact}
-              className="bg-black text-white hover:bg-[#d6007f] px-10 py-4 rounded-full text-lg font-black tracking-wide transition-all hover:scale-105 border border-white/10 shadow-none"
+              className="bg-black text-white hover:bg-[#d6007f] px-10 py-4 rounded-full text-lg font-bold tracking-wide transition-all hover:scale-105 border border-white/10 shadow-none"
             >
-              ¡Agenda Ahora GRATIS!
+              ¡Agenda Consultoría GRATIS!
             </button>
           </div>
         </div>

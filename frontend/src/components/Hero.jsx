@@ -39,7 +39,7 @@ const Hero = () => {
                 }}
               />
             </div>
-            <div className="block sm:hidden absolute inset-x-0 top-24 z-0" style={{ height: '56.25vw', maxHeight: '72vh' }}>
+            <div className="block sm:hidden absolute inset-x-0 top-24 z-0 overflow-hidden" style={{ height: '56.25vw', maxHeight: '72vh' }}>
               <iframe
                 title="FEMEGA hero background video mobile"
                 className="pointer-events-none"
@@ -52,8 +52,7 @@ const Hero = () => {
                   height: '100%',
                   filter: 'brightness(0.7) contrast(1.1)',
                   objectFit: 'cover',
-                  objectPosition: 'center top',
-                  transform: 'translateY(0px)'
+                  objectPosition: 'center top'
                 }}
               />
             </div>
@@ -69,10 +68,22 @@ const Hero = () => {
       </div>
 
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 z-0 opacity-30">
+      <div className="hidden sm:block absolute inset-0 z-0 opacity-30">
         <div className="absolute top-20 left-10 w-72 h-72 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-500"></div>
+      </div>
+
+      <div className="block sm:hidden absolute inset-x-0 top-24 z-[1] pointer-events-none" style={{ height: '56.25vw', maxHeight: '72vh' }} aria-hidden="true">
+        <img
+          src={jacketImage}
+          alt=""
+          className="absolute right-0 bottom-0 h-[170px] w-auto max-w-[50%] object-contain object-bottom"
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 h-2 w-full"
+          style={{ background: 'linear-gradient(90deg, #34c6d7 0%, #a7d92a 18%, #f4d400 42%, #efb0c5 68%, #d8007f 100%)' }}
+        />
       </div>
 
       {/* Content */}
@@ -158,12 +169,13 @@ const Hero = () => {
           {/* Right Column - Visual Element */}
           <div className="hidden lg:block" aria-hidden="true"></div>
         </div>
-        <img
-          src={jacketImage}
-          alt="FEMEGA"
-          className="hidden lg:block absolute right-0 -bottom-24 z-10 h-[420px] xl:h-[clamp(620px,35vw,1100px)] w-auto max-w-full object-contain object-bottom pointer-events-none"
-        />
       </div>
+
+      <img
+        src={jacketImage}
+        alt="FEMEGA"
+        className="hidden lg:block absolute right-0 bottom-0 z-10 h-[420px] xl:h-[clamp(620px,35vw,1100px)] w-auto max-w-full object-contain object-bottom pointer-events-none"
+      />
 
       {/* Scroll Indicator */}
       <div className="hidden sm:block absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
