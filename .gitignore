@@ -82,3 +82,5 @@ android-sdk/
 *.env
 .env.*
 
+.vercel
+.env*

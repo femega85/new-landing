@@ -1,8 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.23214dc6.css",
-    "main.js": "/static/js/main.23ec3aba.js",
+    "main.css": "/static/css/main.f1969c2c.css",
+    "main.js": "/static/js/main.116d155e.js",
+    "static/media/eventos.png": "/static/media/eventos.826188e5263e653399eb.png",
+    "static/media/FEMEGA_Chaqueta.png": "/static/media/FEMEGA_Chaqueta.c5e6d2abf72d7a89c1a5.png",
     "static/media/femega_team.jpg": "/static/media/femega_team.fa67a20a2a4d07a85684.jpg",
+    "static/media/target.png": "/static/media/target.8c6b4dc5a4b918988b55.png",
+    "static/media/planeta.png": "/static/media/planeta.7065edbdfb24db8203a2.png",
+    "static/media/experience.png": "/static/media/experience.2b1381bcacdc0edd0265.png",
+    "static/media/estatua.png": "/static/media/estatua.984ef5702519c78c744d.png",
+    "static/media/corazon_cool.png": "/static/media/corazon_cool.5438a0630b5d03e8ff15.png",
     "static/media/logo_saint-gobain.png": "/static/media/logo_saint-gobain.ab27d5880d59aa300218.png",
     "static/media/logo_bavaria_ab.png": "/static/media/logo_bavaria_ab.01e2a498ed622b2d470d.png",
     "static/media/logo_samsung.png": "/static/media/logo_samsung.6dd1296fe7334620fdc5.png",
@@ -11,15 +18,18 @@
     "static/media/logo_fiberglass-isover.png": "/static/media/logo_fiberglass-isover.743675ce60474a288c07.png",
     "static/media/logo_megalabs.png": "/static/media/logo_megalabs.c9063a1cba9f84b1fd5c.png",
     "static/media/logo_axa_xl.png": "/static/media/logo_axa_xl.9f3526cd87b0a14779a2.png",
+    "static/media/logo_one.png": "/static/media/logo_one.e199f3275657f536afa8.png",
     "static/media/logo_adidas.png": "/static/media/logo_adidas.85c122201f060cd80691.png",
+    "static/media/logo_knauf.png": "/static/media/logo_knauf.fa76d1dc18b348cb152e.png",
     "static/media/logo-femega-slogan-white-esp-svg.svg": "/static/media/logo-femega-slogan-white-esp-svg.feacfd617aad892730ab532eb118c2f8.svg",
+    "static/media/femega-gradient-bar.svg": "/static/media/femega-gradient-bar.75efbc0e2ecc6686f94c98b9127da9c1.svg",
     "index.html": "/index.html",
     "static/media/logo-femega-svg.svg": "/static/media/logo-femega-svg.40cb5d8ef56b228e49ccc580cc4e4d9a.svg",
-    "main.23214dc6.css.map": "/static/css/main.23214dc6.css.map",
-    "main.23ec3aba.js.map": "/static/js/main.23ec3aba.js.map"
+    "main.f1969c2c.css.map": "/static/css/main.f1969c2c.css.map",
+    "main.116d155e.js.map": "/static/js/main.116d155e.js.map"
   },
   "entrypoints": [
-    "static/css/main.23214dc6.css",
-    "static/js/main.23ec3aba.js"
+    "static/css/main.f1969c2c.css",
+    "static/js/main.116d155e.js"
   ]
 }
