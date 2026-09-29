@@ -38,14 +38,14 @@ const Services = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 xl:gap-8">
           {services.map((service, index) => {
             const IconComponent = iconMap[service.icon];
             const hasImageIcon = ['Sparkles', 'Globe', 'Lightbulb'].includes(service.icon);
             return (
               <Card
                 key={service.id}
-                className="group hover:shadow-2xl transition-all duration-300 border-0 overflow-hidden bg-white"
+                className="group flex h-full flex-col overflow-hidden border-0 bg-white transition-all duration-300 hover:shadow-2xl"
                 style={{
                   animationDelay: `${index * 0.1}s`
                 }}
@@ -73,17 +73,17 @@ const Services = () => {
                   </div>
                 </div>
 
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#d6007f] transition-colors">
+                <CardContent className="flex flex-1 flex-col p-6 xl:p-8">
+                  <h3 className="mb-3 text-xl font-bold text-gray-900 transition-colors group-hover:text-[#d6007f] xl:text-2xl">
                     {service.title}
                   </h3>
                   
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                  <p className="mb-5 text-sm leading-relaxed text-gray-600 xl:mb-6 xl:text-base">
                     {service.description}
                   </p>
 
                   {/* Features List */}
-                  <ul className="space-y-3 mb-6">
+                  <ul className="mb-5 space-y-2 xl:mb-6 xl:space-y-3">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start">
                         <Check className="text-green-500 mr-2 flex-shrink-0 mt-1" size={18} />
@@ -94,7 +94,7 @@ const Services = () => {
 
                   <button
                     onClick={scrollToContact}
-                    className="w-full bg-black text-white hover:bg-[#d6007f] py-3 rounded-lg font-medium transition-all duration-300 shadow-none border border-white/10"
+                    className="mt-auto min-h-11 w-full rounded-lg border border-white/10 bg-black px-4 py-3 text-sm font-medium text-white shadow-none transition-all duration-300 hover:bg-[#d6007f] xl:text-base"
                   >
                     Más Información
                   </button>

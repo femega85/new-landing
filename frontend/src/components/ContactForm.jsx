@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
-import { Send, User, Mail, Phone, CheckCircle } from 'lucide-react';
+import { Send, User, Mail, Phone, CheckCircle, Play } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
+import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
 import { toast } from 'sonner';
 import gradientBar from '../assets/femega-gradient-bar.svg';
+import femegaPerson from '../assets/FEMEGA_Camisa_Verde.png';
+import videoCover from '../assets/Portada-Video_KNAUF_Lanzamiento-CEB_2026.jpg';
+import chatIcon from '../assets/chat.png';
+import calendarIcon from '../assets/Calendario.png';
 
 const ContactForm = () => {
+  const [activePath, setActivePath] = useState(null);
+  const [, setIsSchedulingModalOpen] = useState(false);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -14,6 +22,10 @@ const ContactForm = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleOpenSchedulingModal = () => {
+    setIsSchedulingModalOpen(true);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -147,8 +159,71 @@ const ContactForm = () => {
           </div>
 
           {/* Right Column - Form */}
-          <div className="bg-white min-w-0 w-full rounded-3xl p-8 md:p-10 shadow-2xl h-full overflow-hidden">
-            {isSuccess ? (
+          <div className="bg-white min-w-0 w-full rounded-3xl p-6 xl:p-10 shadow-2xl h-full overflow-hidden">
+            {!activePath ? (
+              <div className="flex h-full min-h-[470px] flex-col text-center">
+                <div className="space-y-6 md:space-y-8">
+                  <div>
+                    <h3 className="text-xl xl:text-2xl font-bold text-gray-900 break-words mb-3">
+                      ¿Quieres tu consultoría gratuita?
+                    </h3>
+                    <p className="text-sm sm:text-base text-gray-600 font-bold break-words">
+                      Elige la opción que prefieras para que juntos diseñemos esa experiencias que sueñas para tu marca.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <Button
+                      type="button"
+                      onClick={() => setActivePath('contact')}
+                      className="px-4 py-3 w-full min-h-12 h-auto bg-black text-white hover:bg-[#d6007f] text-base xl:text-lg font-semibold rounded-lg transition-all shadow-none border border-white/10 whitespace-normal"
+                    >
+                      <span className="grid w-full grid-cols-[minmax(0,1fr)_36px] items-center gap-2 sm:grid-cols-[minmax(0,1fr)_40px]">
+                        <span className="min-w-0 text-center leading-tight">Quiero que me contacten</span>
+                        <img src={chatIcon} alt="" className="h-9 w-9 shrink-0 object-contain sm:h-10 sm:w-10" />
+                      </span>
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={handleOpenSchedulingModal}
+                      className="px-4 py-3 w-full min-h-12 h-auto bg-[#e90083] text-white hover:bg-[#15803d] text-base xl:text-lg font-semibold rounded-lg transition-colors shadow-none border border-transparent whitespace-normal"
+                    >
+                      <span className="grid w-full grid-cols-[minmax(0,1fr)_36px] items-center gap-2 sm:grid-cols-[minmax(0,1fr)_40px]">
+                        <span className="min-w-0 text-center leading-tight">¡Agendar mi consultoría ahora!</span>
+                        <img src={calendarIcon} alt="" className="h-9 w-9 shrink-0 object-contain sm:h-10 sm:w-10" />
+                      </span>
+                    </Button>
+                  </div>
+                </div>
+                <div className="mt-6 grid min-h-[160px] grid-cols-[minmax(0,1fr)_minmax(88px,0.58fr)] items-end gap-2 md:mt-auto md:min-h-[245px] md:flex-1">
+                  <div className="min-w-0 md:max-lg:mt-[2%]">
+                    <p className="mb-2 px-1 text-left text-sm font-semibold leading-tight text-gray-900">
+                      Mira nuestra última experiencia
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setIsVideoModalOpen(true)}
+                      aria-label="Reproducir video de las mejores experiencias"
+                      className="group relative flex aspect-auto min-h-[136px] min-w-0 w-full items-center justify-center overflow-hidden rounded-2xl bg-black text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6007f] focus-visible:ring-offset-2 sm:aspect-video sm:min-h-0"
+                    >
+                      <img
+                        src={videoCover}
+                        alt=""
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <span className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/40" />
+                      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white/70 shadow-lg transition-transform group-hover:scale-110">
+                        <Play className="ml-1 h-6 w-6 fill-current text-black" aria-hidden="true" />
+                      </span>
+                    </button>
+                  </div>
+                  <img
+                    src={femegaPerson}
+                    alt="Representante de FEMEGA"
+                    className="h-[160px] w-full max-w-[180px] justify-self-end object-contain object-bottom sm:h-[190px] md:h-full md:max-h-[220px]"
+                  />
+                </div>
+              </div>
+            ) : isSuccess ? (
               <div className="text-center py-12">
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                   <CheckCircle className="text-green-500" size={40} />
@@ -161,7 +236,15 @@ const ContactForm = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-4">
+                <button
+                  type="button"
+                  onClick={() => setActivePath(null)}
+                  className="text-sm font-semibold text-gray-600 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6007f] focus-visible:ring-offset-2 rounded-sm"
+                >
+                  ← Volver a opciones
+                </button>
+                <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-bold text-gray-900 break-words mb-2">
                       Dejanos tus datos
@@ -253,11 +336,29 @@ const ContactForm = () => {
                 <p className="text-xs text-gray-500 text-center">
                   Al enviar este formulario aceptas recibir comunicaciones de FEMEGA
                 </p>
-              </form>
+                </form>
+              </div>
             )}
           </div>
         </div>
       </div>
+      <Dialog open={isVideoModalOpen} onOpenChange={setIsVideoModalOpen}>
+        <DialogContent className="w-[calc(100%-2rem)] max-w-5xl overflow-hidden rounded-2xl border-0 bg-black p-0 text-white">
+          <DialogTitle className="sr-only">Video de las mejores experiencias</DialogTitle>
+          {isVideoModalOpen && (
+            <div className="aspect-video w-full">
+              <iframe
+                className="h-full w-full"
+                src="https://www.youtube-nocookie.com/embed/SCvHd9uhipY?autoplay=1&rel=0"
+                title="Video de las mejores experiencias"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

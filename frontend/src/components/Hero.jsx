@@ -97,7 +97,7 @@ const Hero = () => {
               width: '100%'
             }}
           >
-            <h1 className="text-4xl md:text-7xl font-black leading-[0.9] whitespace-pre-line">
+            <h1 className="text-4xl md:text-5xl xl:text-7xl font-black leading-[0.9] whitespace-pre-line">
               {hero.title}
             </h1>
 
@@ -110,7 +110,7 @@ const Hero = () => {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col xl:flex-row gap-4 pt-4">
               <Button
                 onClick={() => {
                   const element = document.getElementById('casos-exito');

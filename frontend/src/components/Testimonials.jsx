@@ -128,8 +128,8 @@ const Testimonials = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="z-20 -left-3 md:-left-5 bg-white/90 hover:bg-white text-gray-700 shadow-md" />
-            <CarouselNext className="z-20 -right-3 md:-right-5 bg-white/90 hover:bg-white text-gray-700 shadow-md" />
+            <CarouselPrevious className="no-hover-motion z-20 -left-3 md:-left-5 bg-white/90 text-gray-700 shadow-md" />
+            <CarouselNext className="no-hover-motion z-20 -right-3 md:-right-5 bg-white/90 text-gray-700 shadow-md" />
           </Carousel>
         </div>
 
