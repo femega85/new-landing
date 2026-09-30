@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown, Check } from 'lucide-react';
 import femegaLogoWhite from '../assets/logo-femega-slogan-white-esp-svg.svg';
 import femegaLogoBlack from '../assets/logo-femega-slogan-black-esp-svg.svg';
 import { Button } from './ui/button';
@@ -7,6 +7,7 @@ import { Button } from './ui/button';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +24,33 @@ const Header = () => {
       setIsMobileMenuOpen(false);
     }
   };
+
+  const renderLanguageOptions = (id) => (
+    <div
+      id={id}
+      role="group"
+      aria-label="Opciones de idioma"
+      className="mt-2 rounded-md border border-gray-200 bg-white p-1 shadow-lg"
+    >
+      <button
+        type="button"
+        aria-pressed="true"
+        onClick={() => setIsLanguageSelectorOpen(false)}
+        className="flex w-full items-center justify-between rounded px-3 py-2 text-left text-sm font-medium text-gray-900 hover:bg-gray-100"
+      >
+        Español
+        <Check size={16} aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        disabled
+        className="flex w-full items-center justify-between rounded px-3 py-2 text-left text-sm text-gray-400"
+      >
+        English
+        <span className="text-xs">Próximamente</span>
+      </button>
+    </div>
+  );
 
   return (
     <header
@@ -42,7 +70,7 @@ const Header = () => {
             <img
               src={isScrolled ? femegaLogoBlack : femegaLogoWhite}
               alt="FEMEGA logo"
-              className="h-auto w-[196px] max-w-full object-contain transition-all duration-300"
+              className="h-auto w-[176px] max-w-full object-contain transition-all duration-300 md:w-[168px] lg:w-[196px]"
             />
           </div>
 
@@ -86,22 +114,35 @@ const Header = () => {
             >
               ¡Consultoría Gratis!
             </Button>
-            <button
-              type="button"
-              aria-label="Cambiar idioma a inglés"
-              className={`flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-200 ${
-                isScrolled
-                  ? 'border-gray-300 bg-white text-gray-800 hover:border-gray-400 hover:bg-gray-50'
-                  : 'border-white/30 bg-black/20 text-white hover:border-white/60 hover:bg-white/10'
-              }`}
-            >
-              <Globe size={18} />
-            </button>
+            <div className="relative">
+              <button
+                type="button"
+                aria-label="Seleccionar idioma: Español"
+                aria-expanded={isLanguageSelectorOpen}
+                aria-controls="desktop-language-options"
+                onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
+                className={`flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-200 ${
+                  isScrolled
+                    ? 'border-gray-300 bg-white text-gray-800 hover:border-gray-400 hover:bg-gray-50'
+                    : 'border-white/30 bg-black/20 text-white hover:border-white/60 hover:bg-white/10'
+                }`}
+              >
+                <Globe size={18} />
+              </button>
+              {isLanguageSelectorOpen && (
+                <div className="absolute right-0 top-full z-50 mt-2 w-48">
+                  {renderLanguageOptions('desktop-language-options')}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Mobile menu button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => {
+              setIsMobileMenuOpen(!isMobileMenuOpen);
+              setIsLanguageSelectorOpen(false);
+            }}
             className={`xl:hidden p-3 rounded-lg transition-colors ${
               isScrolled ? 'text-gray-700' : 'text-white'
             }`}
@@ -144,6 +185,26 @@ const Header = () => {
               >
                 Agenda Gratis
               </Button>
+              <div className="border-t border-gray-200 pt-3">
+                <button
+                  type="button"
+                  aria-expanded={isLanguageSelectorOpen}
+                  aria-controls="mobile-language-options"
+                  onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
+                  className="flex w-full items-center justify-between py-2 font-medium text-gray-700 hover:text-[#d6007f]"
+                >
+                  <span className="inline-flex items-center gap-2">
+                    <Globe size={18} aria-hidden="true" />
+                    Español
+                  </span>
+                  <ChevronDown
+                    size={16}
+                    aria-hidden="true"
+                    className={`transition-transform ${isLanguageSelectorOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {isLanguageSelectorOpen && renderLanguageOptions('mobile-language-options')}
+              </div>
             </div>
           </div>
         )}

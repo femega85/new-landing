@@ -12,20 +12,20 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#000] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-4 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-28 lg:!pb-28">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-[minmax(280px,1.5fr)_minmax(160px,1fr)_minmax(248px,1fr)] gap-8 lg:gap-12">
           {/* Company Info */}
-          <div className="md:col-span-2 text-center md:text-left">
-            <div className="w-[280px] max-w-full mx-auto md:mx-0">
+          <div className="sm:col-span-2 lg:col-span-1 text-center lg:text-left">
+            <div className="w-[280px] max-w-full mx-auto lg:mx-0">
               <img
                 src={femegaLogoSvg}
                 alt="FEMEGA logo"
                 className="h-20 md:h-24 w-full object-contain"
               />
             </div>
-            <p className="text-xl w-[280px] max-w-full mx-auto md:mx-0" style={{ color: '#ffffff' }}>{company.tagline}</p>
+            <p className="text-xl w-[280px] max-w-full mx-auto lg:mx-0" style={{ color: '#ffffff' }}>{company.tagline}</p>
             {/* Social Media */}
-            <div className="flex justify-center md:justify-start gap-4 mt-8">
+            <div className="flex justify-center lg:justify-start gap-4 mt-8">
               <a
                 href={socialMedia.linkedin}
                 target="_blank"
@@ -166,9 +166,9 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href={`mailto:${company.email}`} className="hover:text-orange-400 transition-colors inline-flex items-center gap-2" style={{ color: '#ffffff' }}>
-                  <span aria-hidden="true">✉️</span>
-                  {company.email}
+                <a href={`mailto:${company.email}`} className="hover:text-orange-400 transition-colors inline-flex min-w-0 max-w-full items-center gap-2" style={{ color: '#ffffff' }}>
+                  <span className="shrink-0" aria-hidden="true">✉️</span>
+                  <span className="min-w-0 break-all">{company.email}</span>
                 </a>
               </li>
               <li className="pt-2">
@@ -188,11 +188,11 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-center md:text-left mb-4 md:mb-0" style={{ color: '#ffffff' }}>
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-sm text-center" style={{ color: '#ffffff' }}>
               © {new Date().getFullYear()} {company.name}. Todos los derechos reservados.
             </p>
-            <div className="flex gap-6 text-sm">
+            <div className="flex flex-wrap justify-start lg:justify-center gap-x-4 gap-y-2 text-sm">
               <button className="hover:text-orange-400 transition-colors" style={{ color: '#ffffff' }}>
                 Política de Privacidad
               </button>

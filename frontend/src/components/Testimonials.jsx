@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Star, Quote } from 'lucide-react';
+import { Star, Quote, MapPin } from 'lucide-react';
 import { mockData } from '../data/mock';
 import { Card, CardContent } from './ui/card';
 import gradientBar from '../assets/femega-gradient-bar.svg';
@@ -18,13 +18,12 @@ const Testimonials = () => {
   useEffect(() => {
     if (!carouselApi) return undefined;
 
-    const mobileQuery = window.matchMedia('(max-width: 767px)');
     const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     let intervalId;
 
     const syncAutoplay = () => {
       window.clearInterval(intervalId);
-      if (mobileQuery.matches && !reducedMotionQuery.matches) {
+      if (!reducedMotionQuery.matches) {
         intervalId = window.setInterval(() => {
           carouselApi.scrollNext();
         }, 7000);
@@ -32,12 +31,10 @@ const Testimonials = () => {
     };
 
     syncAutoplay();
-    mobileQuery.addEventListener('change', syncAutoplay);
     reducedMotionQuery.addEventListener('change', syncAutoplay);
 
     return () => {
       window.clearInterval(intervalId);
-      mobileQuery.removeEventListener('change', syncAutoplay);
       reducedMotionQuery.removeEventListener('change', syncAutoplay);
     };
   }, [carouselApi]);
@@ -64,14 +61,18 @@ const Testimonials = () => {
               loop: true,
               align: 'start',
               slidesToScroll: 1,
+              breakpoints: {
+                '(min-width: 768px)': { slidesToScroll: 2 },
+                '(min-width: 1280px)': { slidesToScroll: 3 },
+              },
             }}
             className="w-full"
           >
-            <CarouselContent className="-ml-4" viewportClassName="overflow-hidden">
+            <CarouselContent className="ml-0 gap-4" viewportClassName="overflow-hidden">
               {testimonials.map((testimonial, index) => (
                 <CarouselItem
                   key={testimonial.id}
-                  className="pl-4 md:basis-1/2 xl:basis-1/3"
+                  className="basis-full pl-0 md:basis-[calc(50%_-_0.5rem)] xl:basis-[calc(33.333333%_-_0.666667rem)]"
                 >
                   <Card
                     className="group w-full min-w-0 h-full shadow-[0_10px_24px_rgba(15,23,42,0.12)] hover:shadow-[0_18px_36px_rgba(15,23,42,0.16)] transition-all duration-300 border-0 bg-white overflow-hidden"
@@ -101,7 +102,7 @@ const Testimonials = () => {
                       </p>
 
                       <div className="flex items-center pt-6 border-t border-gray-100">
-                        <div className="w-14 h-14 rounded-full overflow-hidden mr-4 flex-shrink-0">
+                        <div className="w-[4.2rem] h-[4.2rem] rounded-full overflow-hidden mr-4 flex-shrink-0">
                           <img
                             src={testimonial.image}
                             alt={testimonial.name}
@@ -115,11 +116,12 @@ const Testimonials = () => {
                           <div className="text-sm text-gray-500">
                             {testimonial.position}
                           </div>
-                          <div className="text-sm text-gray-500">
-                            {testimonial.city}
-                          </div>
                           <div className="text-sm font-medium text-[#d6007f]">
                             {testimonial.company}
+                          </div>
+                          <div className="inline-flex items-center gap-1 text-sm text-gray-500">
+                            <MapPin className="h-3.5 w-3.5 shrink-0 text-black" aria-hidden="true" />
+                            {testimonial.city}
                           </div>
                         </div>
                       </div>
