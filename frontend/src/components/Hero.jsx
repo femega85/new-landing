@@ -91,21 +91,29 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-4 xl:gap-12 items-center max-w-7xl mx-auto">
           {/* Left Column - Text Content */}
           <div
-            className="text-white space-y-3 sm:space-y-4 rounded-none lg:rounded-2xl p-3 sm:p-4 mt-0"
+            className="text-white space-y-3 sm:space-y-4 rounded-none lg:rounded-2xl p-3 sm:p-4 mt-0 lg:mt-32 xl:mt-0"
             style={{
               backgroundColor: 'rgba(0, 0, 0, 0.28)',
               width: '100%'
             }}
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-6xl font-black leading-[0.9] whitespace-pre-line">
-              {hero.title}
+            <h1 className="text-3xl sm:text-4xl md:text-[2.925rem] lg:text-4xl xl:text-6xl font-black !leading-[1.1] whitespace-pre-line md:text-center lg:text-left">
+              <span className="md:hidden lg:inline">{hero.title}</span>
+              <span className="hidden md:inline lg:hidden whitespace-normal">
+                HACEMOS LO QUE LA I.A
+                <br />
+                NO HACE
+              </span>
             </h1>
 
-            <p className="text-lg sm:text-xl lg:text-lg text-white/90 font-bold leading-snug max-w-2xl">
-              {hero.subtitle}
+            <p className="text-lg sm:text-xl lg:text-lg text-white/90 font-bold leading-snug max-w-2xl md:mx-auto md:text-center lg:mx-0 lg:text-left">
+              <span className="md:hidden lg:inline">{hero.subtitle}</span>
+              <span className="hidden md:inline lg:hidden">
+                {hero.subtitle.replace(/[.!?]+$/, '')}.
+              </span>
             </p>
 
-            <p className="text-sm sm:text-base lg:text-sm text-white/80 leading-snug max-w-xl font-medium">
+            <p className="text-sm sm:text-base lg:text-sm text-white/80 leading-snug max-w-xl font-medium md:mx-auto md:text-center lg:mx-0 lg:text-left">
               {hero.description}
             </p>
 
@@ -178,7 +186,7 @@ const Hero = () => {
       />
 
       {/* Scroll Indicator */}
-      <div className="hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+      <div className="hidden lg:block absolute bottom-8 left-1/2 lg:left-[calc(50%+4.5rem)] xl:left-1/2 transform -translate-x-1/2 z-10">
         <div className="animate-bounce">
           <div className="w-8 h-12 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
             <div className="w-1 h-3 bg-white/50 rounded-full animate-pulse"></div>

@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import WhyExperiences from "./components/WhyExperiences";
 import Services from "./components/Services";
 import VideoShowcase from "./components/VideoShowcase";
 import ClientsSlider from "./components/ClientsSlider";
@@ -16,6 +17,7 @@ const Home = () => {
     <div className="min-h-screen">
       <Header />
       <Hero />
+      <WhyExperiences />
       <Services />
       <VideoShowcase />
       <ClientsSlider />

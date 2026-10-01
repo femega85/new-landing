@@ -185,7 +185,7 @@ const ContactForm = () => {
                     <Button
                       type="button"
                       onClick={handleOpenSchedulingModal}
-                      className="px-4 py-3 w-full min-h-12 h-auto bg-[#e90083] text-white hover:bg-[#15803d] text-base xl:text-lg font-semibold rounded-lg transition-colors shadow-none border border-transparent whitespace-normal"
+                      className="px-4 py-3 w-full min-h-12 h-auto bg-[#15803d] text-white hover:bg-[#e90083] text-base xl:text-lg font-semibold rounded-lg transition-colors shadow-none border border-transparent whitespace-normal"
                     >
                       <span className="grid w-full grid-cols-[minmax(0,1fr)_36px] items-center gap-2 sm:grid-cols-[minmax(0,1fr)_40px]">
                         <span className="min-w-0 text-center leading-tight">¡Agendar mi consultoría ahora!</span>
