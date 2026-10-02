@@ -68,38 +68,66 @@ export const mockData = {
   successVideos: [
     {
       id: 1,
-      title: "Memorias Convención Ventas Knauf 2025",
-      videoId: "sPRUPnoTNp0",
-      thumbnail: "https://img.youtube.com/vi/sPRUPnoTNp0/maxresdefault.jpg",
+      title: "Kanuf memorias Lanzamiento CEB",
+      videoId: "SCvHd9uhipY",
+      thumbnail: "https://img.youtube.com/vi/SCvHd9uhipY/maxresdefault.jpg",
       client: "Knauf"
     },
     {
       id: 2,
-      title: "Video 10 años Knauf",
-      videoId: "q4Hed4XMz0A",
-      thumbnail: "https://img.youtube.com/vi/q4Hed4XMz0A/maxresdefault.jpg",
-      client: "Knauf"
+      title: "Fiberglass Isover Evento Fin de Año 2022",
+      videoId: "9boxFtb40Hw",
+      thumbnail: "https://img.youtube.com/vi/9boxFtb40Hw/maxresdefault.jpg",
+      client: "Isover"
     },
     {
-      id: 3,
-      title: "Encuentro Líderes Knauf Colombia 2025",
-      videoId: "zkB23Xl11k8",
-      thumbnail: "https://img.youtube.com/vi/zkB23Xl11k8/maxresdefault.jpg",
-      client: "Knauf"
+      id: 9,
+      title: "Webinar Tendencias Marketing de Experiencias 2025 by FEMEGA",
+      videoId: "p7Ue7VJv8k4",
+      thumbnail: "https://img.youtube.com/vi/p7Ue7VJv8k4/maxresdefault.jpg",
+      client: "FEMEGA"
+    },
+    {
+      id: 6,
+      title: "Gran Lanzamiento Virtual Matiz Casas",
+      videoId: "KkQ8fM0MubM",
+      thumbnail: "https://img.youtube.com/vi/KkQ8fM0MubM/maxresdefault.jpg",
+      client: "Matiz Núcleo"
     },
     {
       id: 4,
-      title: "Megalabs - Latinos de Corazón",
-      videoId: "OKyarwBOuoU",
-      thumbnail: "https://img.youtube.com/vi/OKyarwBOuoU/maxresdefault.jpg",
+      title: "Megalabs: Lobby Comercial",
+      videoId: "lpNALtr0yTk",
+      thumbnail: "https://img.youtube.com/vi/lpNALtr0yTk/maxresdefault.jpg",
       client: "Megalabs"
     },
     {
+      id: 7,
+      title: "Aniversario de 50 años IC Constructora",
+      videoId: "hHfXphCivVI",
+      thumbnail: "https://img.youtube.com/vi/hHfXphCivVI/maxresdefault.jpg",
+      client: "IC Constructora"
+    },
+    {
       id: 5,
-      title: "Knauf - Convención de Ventas 2024",
-      videoId: "ixzf5ePwkvw",
-      thumbnail: "https://img.youtube.com/vi/ixzf5ePwkvw/maxresdefault.jpg",
-      client: "Knauf"
+      title: "Activación de marca Mr Jeff app",
+      videoId: "SJz1Z8Rhb3k",
+      thumbnail: "https://img.youtube.com/vi/SJz1Z8Rhb3k/maxresdefault.jpg",
+      client: "Mr Jeff"
+    },
+    {
+      id: 8,
+      title: "We-Vinar Solarum Un recorrido Espumoso",
+      videoId: "PvYKPv9YzTA",
+      thumbnail: "https://img.youtube.com/vi/PvYKPv9YzTA/maxresdefault.jpg",
+      client: "Gerenciar Constructora"
+    },
+    {
+      id: 3,
+      title: "XL Catlin en Colombia - Aniversario 20 años",
+      videoId: "jBdJaY5J4iQ",
+      thumbnail: "https://img.youtube.com/vi/jBdJaY5J4iQ/maxresdefault.jpg",
+      client: "XL Catlin"
     }
   ],
 

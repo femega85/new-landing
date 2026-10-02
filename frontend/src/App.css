@@ -125,13 +125,43 @@ a {
 }
 
 /* Hover effects */
-button:hover:not(:disabled),
-a:hover {
+button:hover:not(:disabled):not(.no-hover-motion),
+a:hover:not(.no-hover-motion) {
   transform: translateY(-2px);
 }
 
-button:active:not(:disabled) {
+button:active:not(:disabled):not(.no-hover-motion) {
   transform: translateY(0);
+}
+
+button.no-hover-motion:hover:not(:disabled) {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+button.no-hover-motion:hover:not(:disabled) svg {
+  color: #fff !important;
+}
+
+button.no-hover-motion:active:not(:disabled) {
+  transform: translateY(-50%) !important;
+}
+
+button.nav-arrow-btn.no-hover-motion:hover:not(:disabled) {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+button.nav-arrow-btn.no-hover-motion:hover:not(:disabled) svg {
+  color: #000 !important;
+}
+
+button.thumbnail-page-dot.no-hover-motion:hover:not(:disabled) {
+  background-color: #d946ef !important;
+}
+
+button.thumbnail-page-dot.no-hover-motion:active:not(:disabled) {
+  transform: none !important;
 }
 
 /* Image Loading */
