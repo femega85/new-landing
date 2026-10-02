@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, Play, Award, BriefcaseBusiness, CalendarRange, Smile } from 'lucide-react';
 import { Button } from './ui/button';
 import { mockData } from '../data/mock';
@@ -10,6 +10,23 @@ import jacketImage from '../assets/FEMEGA_Chaqueta.png';
 
 const Hero = () => {
   const { hero } = mockData;
+  const [isDesktop, setIsDesktop] = useState(() =>
+    window.matchMedia('(min-width: 1024px)').matches,
+  );
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const desktopQuery = window.matchMedia('(min-width: 1024px)');
+    const updateViewport = () => setIsDesktop(desktopQuery.matches);
+    const videoTimeout = window.setTimeout(() => setShouldLoadVideo(true), 1200);
+
+    desktopQuery.addEventListener('change', updateViewport);
+
+    return () => {
+      window.clearTimeout(videoTimeout);
+      desktopQuery.removeEventListener('change', updateViewport);
+    };
+  }, []);
 
   const scrollToContact = () => {
     const element = document.getElementById('contacto');
@@ -23,42 +40,41 @@ const Hero = () => {
       {/* Background Video with Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {hero.videoDesktop || hero.videoMobile ? (
-          <>
-            <div className="hidden lg:block absolute inset-0">
+          <div
+            className={`absolute z-0 overflow-hidden ${
+              isDesktop ? 'inset-0' : 'inset-x-0 top-24 aspect-video'
+            }`}
+          >
+            {shouldLoadVideo ? (
               <iframe
-                title="FEMEGA hero background video desktop"
+                title={`FEMEGA hero background video ${
+                  isDesktop ? 'desktop' : 'mobile'
+                }`}
                 className="h-full w-full pointer-events-none"
-                src={hero.videoDesktop || hero.videoMobile}
+                src={
+                  isDesktop
+                    ? hero.videoDesktop || hero.videoMobile
+                    : hero.videoMobile || hero.videoDesktop
+                }
                 loading="lazy"
                 allow="autoplay; encrypted-media; fullscreen"
                 allowFullScreen
                 frameBorder="0"
                 style={{
                   filter: 'brightness(0.7) contrast(1.1)',
-                  objectFit: 'contain',
-                  objectPosition: 'center center'
+                  objectFit: isDesktop ? 'contain' : 'cover',
+                  objectPosition: isDesktop ? 'center center' : 'center top'
                 }}
               />
-            </div>
-            <div className="block lg:hidden absolute inset-x-0 top-24 z-0 aspect-video overflow-hidden">
-              <iframe
-                title="FEMEGA hero background video mobile"
-                className="pointer-events-none"
-                src={hero.videoMobile || hero.videoDesktop}
-                loading="lazy"
-                allow="autoplay; encrypted-media; fullscreen"
-                allowFullScreen
-                frameBorder="0"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  filter: 'brightness(0.7) contrast(1.1)',
-                  objectFit: 'cover',
-                  objectPosition: 'center top'
-                }}
+            ) : (
+              <img
+                src={hero.image}
+                alt=""
+                aria-hidden="true"
+                className="h-full w-full object-cover"
               />
-            </div>
-          </>
+            )}
+          </div>
         ) : (
           <img
             src={hero.image}
