@@ -89,6 +89,24 @@ html {
 }
 
 /* Custom Scrollbar */
+.hero-gradient-overlay {
+  background: linear-gradient(225deg, rgba(244, 212, 0, 0.82) 0%, rgba(167, 217, 42, 0.72) 18%, rgba(52, 198, 215, 0.75) 42%, rgba(239, 176, 197, 0.72) 68%, rgba(216, 0, 122, 0.82) 100%);
+}
+
+@media (max-width: 639px) {
+  .hero-gradient-overlay {
+    transform: scaleY(-1);
+  }
+
+  html {
+    scrollbar-width: none;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -98,12 +116,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f97316;
+  background: #000000;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ea580c;
+  background: #000000;
 }
 
 /* Selection Color */
@@ -122,6 +140,17 @@ html {
 button,
 a {
   transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Hover effects */
@@ -147,6 +176,8 @@ button.no-hover-motion:active:not(:disabled) {
   transform: translateY(-50%) !important;
 }
 
+/* Circular nav arrows (e.g. video carousel): simple color swap on hover,
+   no movement and no black background — goes white with a black arrow. */
 button.nav-arrow-btn.no-hover-motion:hover:not(:disabled) {
   background-color: #fff !important;
   color: #000 !important;
@@ -156,6 +187,7 @@ button.nav-arrow-btn.no-hover-motion:hover:not(:disabled) svg {
   color: #000 !important;
 }
 
+/* Inactive video-page dots turn magenta on hover; the selected page stays magenta. */
 button.thumbnail-page-dot.no-hover-motion:hover:not(:disabled) {
   background-color: #d946ef !important;
 }
@@ -180,19 +212,4 @@ img {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Widget positioning - Prevent overlap between Retell AI and Brevo */
-/* Brevo Conversations widget on the LEFT */
-iframe[src*="brevo"] {
-  left: 20px !important;
-  right: auto !important;
-  bottom: 20px !important;
-}
-
-/* Additional Brevo selectors */
-div[id*="brevo"],
-div[class*="brevo"] {
-  left: 20px !important;
-  right: auto !important;
 }

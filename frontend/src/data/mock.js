@@ -1,13 +1,33 @@
 // Mock data for FEMEGA landing page
+import femegaTeam from '../assets/femega_team.jpg';
+import adidasLogo from '../assets/logo_adidas.png';
+import axaLogo from '../assets/logo_axa_xl.png';
+import abinbevLogo from '../assets/logo_bavaria_ab.png';
+import didiLogo from '../assets/logo_didi.png';
+import drugstoreLogo from '../assets/logo_drugstore.png';
+import isoverLogo from '../assets/logo_fiberglass-isover.png';
+import knaufLogo from '../assets/logo_knauf.png';
+import megalabsLogo from '../assets/logo_megalabs.png';
+import oneLogo from '../assets/logo_one.png';
+import saintGobainLogo from '../assets/logo_saint-gobain.png';
+import samsungLogo from '../assets/logo_samsung.png';
+import testimonyLinda from '../assets/testimony_BCB_Linda.jpg';
+import testimonyFrank from '../assets/testimony_TXG_Frank.jpg';
+import testimonyMichael from '../assets/testimony_AB-Inbev_Michael.jpg';
+import testimonyPaola from '../assets/testimony_knauf_paola.jpg';
+import testimonyJuan from '../assets/testimony_knauf_juan.jpg';
+import testimonyDiana from '../assets/testimony_saint-gobain_diana.jpg';
+import testimonyXimena from '../assets/testimony_Canales_Ximena.jpg';
+import testimonyAlberto from '../assets/testimony_megalabs_alberto.jpg';
 
 export const mockData = {
   company: {
     name: "FEMEGA",
     tagline: "¡El futuro de su marca, HOY!",
     description: "Somos una agencia especializada en crear experiencias inolvidables para tu marca",
-    phone: "+57 606 345 4050",
+    phone: "+57 606 370 7141",
     mobile: "+57 304 353 6326",
-    email: "consultor@femega.com",
+    email: "experiencias@femega.com",
     whatsapp: "573043536326",
     addresses: [
       "Cra 49 #94-12, Bogotá",
@@ -16,11 +36,13 @@ export const mockData = {
   },
 
   hero: {
-    title: "HACEMOS LO QUE LA I.A NO HACE",
-    subtitle: "Experiencias diseñadas por personas para personas",
-    description: "Creamos ideas que se convierten en experiencias inolvidables para tu marca",
+    title: "HACEMOS\nLO QUE LA I.A\nNO HACE",
+    subtitle: "Experiencias diseñadas con amor por personas para otras personas",
+    description: "Generamos ideas innovadoras y las convertimos en experiencias inolvidables para tu marca y sus audiencias.",
     ctaText: "¡Agenda Consultoría GRATIS!",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwyfHxtYXJrZXRpbmclMjB0ZWFtfGVufDB8fHx8MTc3NDM3OTQyNXww&ixlib=rb-4.1.0&q=85"
+    image: femegaTeam,
+    videoDesktop: "https://www.youtube.com/embed/yZRd3HJmHAg?autoplay=1&mute=1&loop=1&playlist=yZRd3HJmHAg&controls=0&showinfo=0&rel=0&modestbranding=1&vq=hd1080",
+    videoMobile: "https://www.youtube.com/embed/yZRd3HJmHAg?autoplay=1&mute=1&loop=1&playlist=yZRd3HJmHAg&controls=0&showinfo=0&rel=0&modestbranding=1&vq=hd1080"
   },
 
   services: [
@@ -41,7 +63,7 @@ export const mockData = {
       id: 2,
       icon: "Globe",
       title: "Experiencias Digitales",
-      description: "Diseñamos experiencias web y contenidos multimedia que sumergen al usuario y aumentan la interacción y la conversión.",
+      description: "Diseñamos experiencias web y contenidos multimedia que sumergen al usuario y elevan la conversión.",
       features: [
         "Sitios web",
         "Recorridos virtuales 360°",
@@ -132,62 +154,98 @@ export const mockData = {
   ],
 
   clients: [
-    { name: "KNAUF", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=KNAUF" },
-    { name: "SAINT-GOBAIN", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=SAINT-GOBAIN" },
-    { name: "AXA", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=AXA" },
-    { name: "Adidas", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=ADIDAS" },
-    { name: "ABInBev", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=ABINBEV" },
-    { name: "Samsung", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=SAMSUNG" },
-    { name: "DiDi", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=DIDI" },
-    { name: "Isover", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=ISOVER" },
-    { name: "Megalabs", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=MEGALABS" },
-    { name: "Drugstore", logo: "https://via.placeholder.com/150x60/FFFFFF/666666?text=DRUGSTORE" }
+    { name: "SAINT-GOBAIN", logo: saintGobainLogo },
+    { name: "AXA", logo: axaLogo },
+    { name: "Adidas", logo: adidasLogo },
+    { name: "ABInBev", logo: abinbevLogo },
+    { name: "Samsung", logo: samsungLogo },
+    { name: "DiDi", logo: didiLogo },
+    { name: "Isover", logo: isoverLogo },
+    { name: "Megalabs", logo: megalabsLogo },
+    { name: "Drugstore", logo: drugstoreLogo },
+    { name: "KNAUF", logo: knaufLogo },
+    { name: "ONE", logo: oneLogo }
   ],
 
   testimonials: [
     {
       id: 1,
-      name: "Carlos Rodríguez",
-      position: "Director de Marketing",
-      company: "Knauf Colombia",
-      image: "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTV8MHwxfHNlYXJjaHwzfHxidXNpbmVzcyUyMG1lZXRpbmd8ZW58MHx8fHwxNzc0Mzc5NDQ0fDA&ixlib=rb-4.1.0&q=85",
-      text: "FEMEGA transformó nuestra convención de ventas en una experiencia inolvidable. El nivel de detalle y creatividad superó nuestras expectativas.",
+      name: "Linda Garzón",
+      position: "Ex Gerente Comercial y de Mercadeo",
+      company: "Greater Bogotá Convention Bureau",
+      city: "Bogotá",
+      image: testimonyLinda,
+      text: "Trabaje con Federico en 2 de los eventos más importantes que ha recibido Bogotá en los últimos años, One Young World y la Cumbre Mundial de Premios Nobel de Paz. Fue una gran experiencia y el trabajo con el estuvo lleno de mucha creatividad, estrategia y trabajo en equipo.",
       rating: 5
     },
     {
       id: 2,
-      name: "María Fernanda López",
-      position: "Gerente de Marca",
-      company: "Megalabs",
-      image: "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      text: "La estrategia digital que desarrollaron aumentó nuestra conversión en un 150%. Son verdaderos expertos en experiencias que conectan.",
+      name: "Frank Moran",
+      position: "Founder",
+      company: "The Experiential Group",
+      city: "New York",
+      image: testimonyFrank,
+      text: "My team and I had the opportunity to work with Federico on a large global Samsung Latin American Conference that took place in Bogota. Federico was our main point of contact and he was an amazing partner in supporting our agency and the end client's goals. We were in Bogota so we had to put out faith and trust in Frederico and his team and they DID NOT DISAPPOINT!",
       rating: 5
     },
     {
       id: 3,
-      name: "Andrés Martínez",
-      position: "CEO",
-      company: "Núcleo Constructora",
-      image: "https://images.unsplash.com/photo-1558008258-3256797b43f3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwzfHxjb3Jwb3JhdGUlMjBldmVudHxlbnwwfHx8fDE3NzQzNzk0MjJ8MA&ixlib=rb-4.1.0&q=85",
-      text: "El recorrido virtual 360° que crearon para nuestros proyectos revolucionó nuestra forma de vender. Altamente recomendados.",
+      name: "Michael Castro",
+      position: "Digital Insights Head HONES",
+      company: "AB InBev",
+      city: "San Salvador",
+      image: testimonyMichael,
+      text: "He tenido la oportunidad de trabajar muy de cerca con Federico. Desde que el acompaño nuestras Convenciones de Ventas, éstas fueron catapultadas a otro nivel. Desde el \"engagement\" con el personal, la claridad de los mensajes y los momentos de impacto, los equipos se fueron energizados del evento. Es el paquete completo!",
       rating: 5
     },
     {
       id: 4,
-      name: "Laura Gutiérrez",
-      position: "Directora Comercial",
-      company: "Saint-Gobain",
-      image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      text: "FEMEGA entiende lo que significa crear experiencias de marca. Su equipo es profesional, creativo y siempre superan los resultados esperados.",
+      name: "Paola Rojas",
+      position: "Gerente de Marketing y Comunicaciones",
+      company: "Knauf Colombia",
+      city: "Bogotá",
+      image: testimonyPaola,
+      text: "Llevo más de 10 años trabajando con FEMEGA en este tipo de experiencias y la verdad somos amigos y aliados estratégicos. Estamos muy agradecidos con FEMEGA.",
       rating: 5
     },
     {
       id: 5,
-      name: "Diego Sánchez",
-      position: "Jefe de Marketing Digital",
-      company: "ABInBev",
-      image: "https://images.pexels.com/photos/3153198/pexels-photo-3153198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      text: "Las activaciones de marca que diseñaron generaron un engagement increíble con nuestro público. Son los mejores en lo que hacen.",
+      name: "Juan Felipe Sandoval",
+      position: "Gerente General",
+      company: "Knauf Colombia",
+      city: "Bogotá",
+      image: testimonyJuan,
+      text: "El evento salió espectacular, la organización, la gente, muy recomendado. Lo tendremos 100% en cuenta para nuestros próximos eventos.",
+      rating: 5
+    },
+    {
+      id: 6,
+      name: "Diana Correal",
+      position: "Directora de Recursos Humanos",
+      company: "Saint Gobain Colombia",
+      city: "Bogotá",
+      image: testimonyDiana,
+      text: "En Saint Gobain tuvimos la oportunidad de trabajar con FEMEGA durante más de 7 años, creando experiencias para varias marcas del grupo como Fiberglass Isover, Saint Gobain Colombia y PAM. ¡Ellos son los mejores en este campo!",
+      rating: 5
+    },
+    {
+      id: 7,
+      name: "Ximena Illera",
+      position: "Gerente Comercial y de Mercadeo",
+      company: "Canales Desarrolladores",
+      city: "Bogotá",
+      image: testimonyXimena,
+      text: "Recomiendo Totalmente a FEMEGA, en cabeza de Federico, el cual es una persona cuidadosa, detallista y sobre todo profesional y con amplio conocimiento y experiencia en los temas digital -virtuales.",
+      rating: 5
+    },
+    {
+      id: 8,
+      name: "Alberto Restrepo",
+      position: "Ex Gerente de Linea Cardiovascular",
+      company: "Megalabs Colombia",
+      city: "Bogotá",
+      image: testimonyAlberto,
+      text: "Trabajamos con FEMEGA durante más de 3 años y gracias a sus experiencias virtuales pudimos crear nuestro Centro Virtual 360° que nos permitió llegar con lanzamientos digitales a un grupo de más de 800 médicos especialistas a nivel nacional.",
       rating: 5
     }
   ],
@@ -204,7 +262,7 @@ export const mockData = {
   stats: [
     { label: "Años de Experiencia", value: "15+" },
     { label: "Marcas Atendidas", value: "50+" },
-    { label: "Eventos Realizados", value: "200+" },
+    { label: "Experiencias Realizadas", value: "200+" },
     { label: "Satisfacción Cliente", value: "98%" }
   ]
 };

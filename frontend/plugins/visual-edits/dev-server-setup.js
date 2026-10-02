@@ -343,7 +343,6 @@ const SUP_PASS = getCodeServerPassword();
 function setupDevServer(config) {
   config.setupMiddlewares = (middlewares, devServer) => {
     if (!devServer) throw new Error("webpack-dev-server not defined");
-    devServer.app.use(express.json());
 
     // CORS origin validation
     const isAllowedOrigin = (origin) => {
@@ -378,7 +377,7 @@ function setupDevServer(config) {
     });
 
     // ✅ Protected file editing endpoint with AST processing
-    devServer.app.post("/edit-file", (req, res) => {
+    devServer.app.post("/edit-file", express.json(), (req, res) => {
       // Validate and set CORS headers
       const origin = req.get("Origin");
       if (origin && isAllowedOrigin(origin)) {

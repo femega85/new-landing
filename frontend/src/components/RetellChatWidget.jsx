@@ -9,7 +9,7 @@ const RetellChatWidget = () => {
   const agentId = 'agent_3ea96bf2f35bacfb29d9d25d64';
   const agentVersion = 0;
   const title = 'Chat con FEMEGA';
-  const customColor = '#f97316'; // Orange color matching FEMEGA branding
+  const customColor = '#66a700'; // Match the green FEMEGA widget branding
   const botName = 'Asistente FEMEGA';
 
   useEffect(() => {
@@ -41,6 +41,7 @@ const RetellChatWidget = () => {
       script.setAttribute('data-agent-version', agentVersion.toString());
       script.setAttribute('data-title', title);
       script.setAttribute('data-bot-name', botName);
+      script.setAttribute('data-fab-text', 'Chat FEMEGA');
       script.setAttribute('data-color', customColor);
 
       // Handle script load events
@@ -51,32 +52,41 @@ const RetellChatWidget = () => {
         // Add custom CSS to position Retell widget on the right
         const style = document.createElement('style');
         style.id = 'retell-widget-custom-style';
-        style.innerHTML = `
+        const widgetStyles = `
           /* Position Retell AI widget in bottom right */
           retell-widget {
             position: fixed !important;
-            bottom: 20px !important;
-            right: 20px !important;
+            bottom: 16px !important;
+            right: 16px !important;
             z-index: 9998 !important;
           }
-          
-          /* Position Brevo widget in bottom left to avoid overlap */
-          #brevo-conversations {
-            position: fixed !important;
-            bottom: 20px !important;
-            left: 20px !important;
-            right: auto !important;
-            z-index: 9997 !important;
+
+          retell-widget [class*="fabText"] {
+            display: block !important;
+            width: max-content !important;
+            min-width: max-content !important;
+            max-width: calc(100vw - 96px) !important;
+            overflow: visible !important;
+            white-space: nowrap !important;
           }
-          
-          /* Brevo button positioning */
-          .brevo-conversations-button {
-            left: 20px !important;
-            right: auto !important;
-            bottom: 20px !important;
+
+          @media (max-width: 639px) {
+            retell-widget [class*="fabText"] {
+              max-width: calc(100vw - 80px) !important;
+              font-size: 14px !important;
+            }
           }
         `;
+        style.innerHTML = widgetStyles;
         document.head.appendChild(style);
+
+        const widget = document.querySelector('retell-widget');
+        if (widget && widget.shadowRoot) {
+          const shadowStyle = document.createElement('style');
+          shadowStyle.id = 'retell-widget-shadow-custom-style';
+          shadowStyle.textContent = widgetStyles;
+          widget.shadowRoot.appendChild(shadowStyle);
+        }
       };
 
       script.onerror = (err) => {
@@ -96,6 +106,11 @@ const RetellChatWidget = () => {
         const styleElement = document.getElementById('retell-widget-custom-style');
         if (styleElement) {
           styleElement.remove();
+        }
+        const widget = document.querySelector('retell-widget');
+        const shadowStyle = widget?.shadowRoot?.getElementById('retell-widget-shadow-custom-style');
+        if (shadowStyle) {
+          shadowStyle.remove();
         }
       };
     } catch (err) {

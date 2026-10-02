@@ -1,87 +1,142 @@
-import React from 'react';
-import { Star, Quote } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Star, Quote, MapPin } from 'lucide-react';
 import { mockData } from '../data/mock';
 import { Card, CardContent } from './ui/card';
+import gradientBar from '../assets/femega-gradient-bar.svg';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from './ui/carousel';
 
 const Testimonials = () => {
   const { testimonials } = mockData;
+  const [carouselApi, setCarouselApi] = useState(null);
+
+  useEffect(() => {
+    if (!carouselApi) return undefined;
+
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let intervalId;
+
+    const syncAutoplay = () => {
+      window.clearInterval(intervalId);
+      if (!reducedMotionQuery.matches) {
+        intervalId = window.setInterval(() => {
+          carouselApi.scrollNext();
+        }, 7000);
+      }
+    };
+
+    syncAutoplay();
+    reducedMotionQuery.addEventListener('change', syncAutoplay);
+
+    return () => {
+      window.clearInterval(intervalId);
+      reducedMotionQuery.removeEventListener('change', syncAutoplay);
+    };
+  }, [carouselApi]);
 
   return (
-    <section id="testimonios" className="py-24 bg-gradient-to-b from-white to-gray-50">
+    <section id="testimonios" className="pt-24 pb-12 md:py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Lo Que Dicen Nuestros Clientes
+          <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
+            Nuestros clientes dicen...
           </h2>
+          <img src={gradientBar} alt="" className="w-96 max-w-full h-auto mx-auto mb-4" />
           <p className="text-xl text-gray-600">
-            La satisfacción de nuestros clientes es nuestro mejor indicador de éxito
+            La mejor forma de medir el éxito de lo que hacemos es a través de quienes han vivido la experiencia FEMEGA.
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card
-              key={testimonial.id}
-              className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white overflow-hidden"
-              style={{
-                animationDelay: `${index * 0.1}s`
-              }}
-            >
-              <CardContent className="p-8">
-                {/* Quote Icon */}
-                <div className="mb-6">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                    <Quote className="text-orange-500" size={24} />
-                  </div>
-                </div>
+        <div className="relative max-w-6xl mx-auto">
+          <div className="hidden pointer-events-none absolute inset-y-0 left-0 z-10 w-4 bg-gradient-to-r from-white via-white/90 to-transparent md:w-8 lg:hidden" aria-hidden="true"></div>
+          <div className="hidden pointer-events-none absolute inset-y-0 right-0 z-10 w-4 bg-gradient-to-l from-white via-white/90 to-transparent md:w-8 lg:hidden" aria-hidden="true"></div>
+          <Carousel
+            setApi={setCarouselApi}
+            opts={{
+              loop: true,
+              align: 'start',
+              slidesToScroll: 1,
+              breakpoints: {
+                '(min-width: 768px)': { slidesToScroll: 2 },
+                '(min-width: 1280px)': { slidesToScroll: 3 },
+              },
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="ml-0 gap-4" viewportClassName="overflow-hidden">
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem
+                  key={testimonial.id}
+                  className="basis-full pl-0 md:basis-[calc(50%_-_0.5rem)] xl:basis-[calc(33.333333%_-_0.666667rem)]"
+                >
+                  <Card
+                    className="group w-full min-w-0 h-full shadow-[0_10px_24px_rgba(15,23,42,0.12)] hover:shadow-[0_18px_36px_rgba(15,23,42,0.16)] transition-all duration-300 border-0 bg-white overflow-hidden"
+                    style={{
+                      animationDelay: `${index * 0.1}s`,
+                    }}
+                  >
+                    <CardContent className="p-8 h-full flex flex-col items-center text-center md:items-start md:text-left">
+                      <div className="mb-6">
+                        <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                          <Quote className="text-white" size={24} />
+                        </div>
+                      </div>
 
-                {/* Rating */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="text-yellow-400 fill-yellow-400"
-                      size={18}
-                    />
-                  ))}
-                </div>
+                      <div className="flex gap-1 mb-4">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className="text-yellow-400 fill-yellow-400"
+                            size={18}
+                          />
+                        ))}
+                      </div>
 
-                {/* Testimonial Text */}
-                <p className="text-gray-700 leading-relaxed mb-6 text-base">
-                  "{testimonial.text}"
-                </p>
+                      <p className="text-gray-700 leading-relaxed mb-6 text-base flex-1">
+                        "{testimonial.text}"
+                      </p>
 
-                {/* Client Info */}
-                <div className="flex items-center pt-6 border-t border-gray-100">
-                  <div className="w-14 h-14 rounded-full overflow-hidden mr-4 flex-shrink-0">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-sm text-gray-500">
-                      {testimonial.position}
-                    </div>
-                    <div className="text-sm font-medium text-orange-600">
-                      {testimonial.company}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                      <div className="flex items-center pt-6 border-t border-gray-100">
+                        <div className="w-[4.2rem] h-[4.2rem] rounded-full overflow-hidden mr-4 flex-shrink-0">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-900">
+                            {testimonial.name}
+                          </div>
+                          <div className="text-sm text-gray-500">
+                            {testimonial.position}
+                          </div>
+                          <div className="text-sm font-medium text-[#d6007f]">
+                            {testimonial.company}
+                          </div>
+                          <div className="inline-flex items-center gap-1 text-sm text-gray-500">
+                            <MapPin className="h-3.5 w-3.5 shrink-0 text-black" aria-hidden="true" />
+                            {testimonial.city}
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="no-hover-motion z-20 -left-3 md:-left-5 bg-white/90 text-gray-700 shadow-md" />
+            <CarouselNext className="no-hover-motion z-20 -right-3 md:-right-5 bg-white/90 text-gray-700 shadow-md" />
+          </Carousel>
         </div>
 
-        {/* CTA After Testimonials */}
-        <div className="mt-16 text-center">
-          <p className="text-lg text-gray-600 mb-6">
+        <div className="mt-8 md:mt-16 text-center">
+            <p className="hidden md:block text-xl text-gray-600 font-bold mb-6">
             ¿Quieres ser parte de nuestras historias de éxito?
           </p>
           <button
@@ -89,9 +144,9 @@ const Testimonials = () => {
               const element = document.getElementById('contacto');
               if (element) element.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-xl"
+            className="hidden md:inline-block bg-black text-white hover:bg-[#d6007f] px-10 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-none border border-white/10"
           >
-            ¡Comienza Tu Transformación Hoy!
+            ¡Agenda tu consultoría gratis hoy!
           </button>
         </div>
       </div>
