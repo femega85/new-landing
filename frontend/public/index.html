@@ -44,31 +44,13 @@
             #emergent-badge {
                 display: none !important;
             }
-
-            .retell-fab {
-                width: 56px;
-                height: 56px;
-                border-radius: 50%;
-                background: #66a700;
-                color: #fff;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 32px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-                cursor: pointer;
-                transition: background 0.2s, transform 0.2s ease;
-                border: none;
-                padding: 0;
-                position: relative;
-                overflow: hidden;
-            }
         </style>
 
         <script
             id="retell-widget"
             src="https://dashboard.retellai.com/retell-widget-v2.js"
             type="module"
+            async
             data-public-key="public_key_ef8cd85b088e9c6a7f395"
             data-agent-id="agent_3ea96bf2f35bacfb29d9d25d64"
             data-title="Chat con FEMEGA"
@@ -80,84 +62,6 @@
             data-show-ai-popup-time="5"
             data-auto-open="false"
         ></script>
-
-        <script>
-            setTimeout(() => {
-                const widget = document.querySelector('#retell-widget');
-                if (widget) {
-                    widget.setAttribute('data-auto-open', 'true');
-                }
-            }, 60000);
-
-            function styleRetellFab() {
-                const container = document.getElementById('retell-widget-root');
-                const shadowHost = [container, ...(container?.querySelectorAll('*') || [])]
-                    .filter(Boolean)
-                    .find((element) => element.shadowRoot);
-                const shadowRoot = shadowHost?.shadowRoot;
-                if (!shadowRoot || shadowRoot.getElementById('retell-fab-sizing-style')) return;
-
-                const style = document.createElement('style');
-                style.id = 'retell-fab-sizing-style';
-                style.textContent = `
-                    [class*="fabBase"][class*="fabChat"] {
-                        box-sizing: border-box !important;
-                        width: max-content !important;
-                        min-width: 200px !important;
-                        max-width: calc(100vw - 32px) !important;
-                        padding-inline: 16px !important;
-                        overflow: visible !important;
-                        white-space: nowrap !important;
-                    }
-
-                    [class*="fabText"] {
-                        display: block !important;
-                        flex: 0 0 auto !important;
-                        width: max-content !important;
-                        min-width: max-content !important;
-                        max-width: calc(100vw - 80px) !important;
-                        overflow: visible !important;
-                        white-space: nowrap !important;
-                    }
-                `;
-                shadowRoot.appendChild(style);
-            }
-
-            function replaceRetellFabText() {
-                styleRetellFab();
-                const textNodes = [];
-                const walker = document.createTreeWalker(document.body || document.documentElement, NodeFilter.SHOW_TEXT);
-                let node;
-                while ((node = walker.nextNode())) {
-                    if (node.textContent && /Need support\?/i.test(node.textContent.trim())) {
-                        textNodes.push(node);
-                    }
-                }
-
-                textNodes.forEach((textNode) => {
-                    textNode.textContent = 'Chat FEMEGA';
-                });
-
-                document.querySelectorAll('*').forEach((el) => {
-                    if (el.textContent && /Need support\?/i.test(el.textContent.trim())) {
-                        el.textContent = 'Chat FEMEGA';
-                    }
-                });
-            }
-
-            const retellTextObserver = new MutationObserver(() => {
-                replaceRetellFabText();
-            });
-
-            retellTextObserver.observe(document.documentElement, {
-                childList: true,
-                subtree: true,
-                characterData: true,
-            });
-
-            setTimeout(replaceRetellFabText, 500);
-            setTimeout(replaceRetellFabText, 2000);
-        </script>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>

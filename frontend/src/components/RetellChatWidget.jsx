@@ -1,156 +1,129 @@
 import React, { useEffect, useState } from 'react';
 
-const RetellChatWidget = () => {
-  const [widgetLoaded, setWidgetLoaded] = useState(false);
-  const [error, setError] = useState(null);
+const RETELL_SCRIPT_ID = 'retell-widget';
+const RETELL_WIDGET_TIMEOUT = 12000;
 
-  // Configuration - direct values provided for the live Retell agent
-  const publicKey = 'public_key_ef8cd85b088e9c6a7f395';
-  const agentId = 'agent_3ea96bf2f35bacfb29d9d25d64';
-  const agentVersion = 0;
-  const title = 'Chat con FEMEGA';
-  const customColor = '#66a700'; // Match the green FEMEGA widget branding
-  const botName = 'Asistente FEMEGA';
+const RetellChatWidget = () => {
+  const [status, setStatus] = useState('loading');
 
   useEffect(() => {
-    // Check if script already exists to prevent duplicate loading
-    const existingScript = document.getElementById('retell-widget');
-    if (existingScript) {
-      setWidgetLoaded(true);
-      return;
-    }
+    let cancelled = false;
+    let loadTimeout;
+    let autoOpenTimeout;
+    let observer;
+    const script = document.getElementById(RETELL_SCRIPT_ID);
 
-    // Validate required environment variables
-    if (!publicKey || !agentId) {
-      console.error('Retell AI configuration missing. Please check environment variables.');
-      setError('Configuración del asistente no disponible');
-      return;
-    }
+    const applyWidgetStyles = () => {
+      const root = document.getElementById('retell-widget-root');
+      if (!root) return false;
 
-    try {
-      // Create and append the Retell widget script
-      const script = document.createElement('script');
-      script.id = 'retell-widget';
-      script.src = 'https://dashboard.retellai.com/retell-widget.js';
-      script.type = 'module';
-      script.async = true;
-
-      // Set all configuration attributes
-      script.setAttribute('data-public-key', publicKey);
-      script.setAttribute('data-agent-id', agentId);
-      script.setAttribute('data-agent-version', agentVersion.toString());
-      script.setAttribute('data-title', title);
-      script.setAttribute('data-bot-name', botName);
-      script.setAttribute('data-fab-text', 'Chat FEMEGA');
-      script.setAttribute('data-color', customColor);
-
-      // Handle script load events
-      script.onload = () => {
-        setWidgetLoaded(true);
-        console.log('Retell AI widget loaded successfully');
-        
-        // Add custom CSS to position Retell widget on the right
+      const shadowHost = [root, ...root.querySelectorAll('*')].find(
+        (element) => element.shadowRoot,
+      );
+      const shadowRoot = shadowHost?.shadowRoot;
+      if (shadowRoot && !shadowRoot.getElementById('retell-fab-sizing-style')) {
         const style = document.createElement('style');
-        style.id = 'retell-widget-custom-style';
-        const widgetStyles = `
-          /* Position Retell AI widget in bottom right */
-          retell-widget {
-            position: fixed !important;
-            bottom: 16px !important;
-            right: 16px !important;
-            z-index: 9998 !important;
-          }
-
-          retell-widget [class*="fabText"] {
-            display: block !important;
+        style.id = 'retell-fab-sizing-style';
+        style.textContent = `
+          [class*="fabBase"][class*="fabChat"] {
+            box-sizing: border-box !important;
             width: max-content !important;
-            min-width: max-content !important;
-            max-width: calc(100vw - 96px) !important;
+            min-width: 200px !important;
+            max-width: calc(100vw - 32px) !important;
+            padding-inline: 16px !important;
             overflow: visible !important;
             white-space: nowrap !important;
           }
 
-          @media (max-width: 639px) {
-            retell-widget [class*="fabText"] {
-              max-width: calc(100vw - 80px) !important;
-              font-size: 14px !important;
-            }
+          [class*="fabText"] {
+            display: block !important;
+            flex: 0 0 auto !important;
+            width: max-content !important;
+            min-width: max-content !important;
+            max-width: calc(100vw - 80px) !important;
+            overflow: visible !important;
+            white-space: nowrap !important;
           }
         `;
-        style.innerHTML = widgetStyles;
-        document.head.appendChild(style);
+        shadowRoot.appendChild(style);
+      }
 
-        const widget = document.querySelector('retell-widget');
-        if (widget && widget.shadowRoot) {
-          const shadowStyle = document.createElement('style');
-          shadowStyle.id = 'retell-widget-shadow-custom-style';
-          shadowStyle.textContent = widgetStyles;
-          widget.shadowRoot.appendChild(shadowStyle);
-        }
-      };
+      return true;
+    };
 
-      script.onerror = (err) => {
-        console.error('Failed to load Retell widget:', err);
-        setError('No se pudo cargar el asistente de voz');
-      };
+    const markReady = () => {
+      if (!applyWidgetStyles()) return false;
+      if (!cancelled) setStatus('ready');
+      window.clearTimeout(loadTimeout);
+      observer?.disconnect();
+      return true;
+    };
 
-      // Append to document body
-      document.body.appendChild(script);
+    const markError = (message) => {
+      if (cancelled) return;
+      window.clearTimeout(loadTimeout);
+      observer?.disconnect();
+      console.error(message);
+      setStatus('error');
+    };
 
-      return () => {
-        // Cleanup: Remove script when component unmounts
-        const scriptElement = document.getElementById('retell-widget');
-        if (scriptElement) {
-          scriptElement.remove();
-        }
-        const styleElement = document.getElementById('retell-widget-custom-style');
-        if (styleElement) {
-          styleElement.remove();
-        }
-        const widget = document.querySelector('retell-widget');
-        const shadowStyle = widget?.shadowRoot?.getElementById('retell-widget-shadow-custom-style');
-        if (shadowStyle) {
-          shadowStyle.remove();
-        }
-      };
-    } catch (err) {
-      console.error('Error initializing Retell widget:', err);
-      setError('Error al inicializar el asistente');
+    if (!script) {
+      markError('Retell AI widget script is missing from the page.');
+      return undefined;
     }
-  }, [publicKey, agentId]); // Add dependencies to fix ESLint warning
+
+    autoOpenTimeout = window.setTimeout(() => {
+      script.dataset.autoOpen = 'true';
+    }, 60000);
+
+    observer = new MutationObserver(markReady);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    const handleLoad = () => {
+      markReady();
+    };
+
+    const handleError = () => {
+      markError('Retell AI widget failed to load. Check the public key domain allowlist.');
+    };
+
+    script.addEventListener('load', handleLoad, { once: true });
+    script.addEventListener('error', handleError, { once: true });
+
+    loadTimeout = window.setTimeout(() => {
+      markError('Retell AI widget did not initialize. Check the public key domain allowlist.');
+    }, RETELL_WIDGET_TIMEOUT);
+
+    markReady();
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(loadTimeout);
+      window.clearTimeout(autoOpenTimeout);
+      observer?.disconnect();
+      script.removeEventListener('load', handleLoad);
+      script.removeEventListener('error', handleError);
+    };
+  }, []);
 
   return (
-    <div id="retell-widget-container">
-      {!widgetLoaded && !error && (
-        <div style={{ 
-          position: 'fixed', 
-          bottom: '90px', 
-          right: '20px', 
-          fontSize: '12px', 
-          color: '#999',
-          background: 'white',
-          padding: '10px 15px',
-          borderRadius: '8px',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-          zIndex: 9999
-        }}>
-          Cargando asistente de voz AI...
-        </div>
-      )}
-      {error && (
-        <div style={{ 
-          position: 'fixed', 
-          bottom: '90px', 
-          right: '20px', 
-          fontSize: '12px', 
-          color: '#e53e3e',
-          background: 'white',
-          padding: '10px 15px',
-          borderRadius: '8px',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-          zIndex: 9999
-        }}>
-          {error}
+    <div id="retell-widget-container" aria-live="polite">
+      {status === 'error' && (
+        <div
+          role="alert"
+          style={{
+            position: 'fixed',
+            bottom: '90px',
+            right: '20px',
+            zIndex: 9999,
+            padding: '10px 15px',
+            borderRadius: '8px',
+            background: 'white',
+            color: '#e53e3e',
+            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+          }}
+        >
+          El chat no está disponible temporalmente.
         </div>
       )}
     </div>
