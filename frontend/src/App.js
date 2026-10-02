@@ -9,6 +9,7 @@ import ClientsSlider from "./components/ClientsSlider";
 import Testimonials from "./components/Testimonials";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
+import RetellChatWidget from "./components/RetellChatWidget";
 import { Toaster } from "./components/ui/sonner";
 
 const Home = () => {
@@ -23,6 +24,7 @@ const Home = () => {
       <Testimonials />
       <ContactForm />
       <Footer />
+      <RetellChatWidget />
       <Toaster position="top-right" richColors />
     </div>
   );
