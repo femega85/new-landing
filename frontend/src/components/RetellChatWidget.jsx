@@ -84,14 +84,14 @@ const RetellChatWidget = () => {
     };
 
     const handleError = () => {
-      markError('Retell AI widget failed to load. Check the public key domain allowlist.');
+      markError('Retell AI widget script request failed.');
     };
 
     script.addEventListener('load', handleLoad, { once: true });
     script.addEventListener('error', handleError, { once: true });
 
     loadTimeout = window.setTimeout(() => {
-      markError('Retell AI widget did not initialize. Check the public key domain allowlist.');
+      markError('Retell AI widget did not initialize before the timeout.');
     }, RETELL_WIDGET_TIMEOUT);
 
     markReady();
