@@ -29,6 +29,7 @@ const Hero = () => {
                 title="FEMEGA hero background video desktop"
                 className="h-full w-full pointer-events-none"
                 src={hero.videoDesktop || hero.videoMobile}
+                loading="lazy"
                 allow="autoplay; encrypted-media; fullscreen"
                 allowFullScreen
                 frameBorder="0"
@@ -44,6 +45,7 @@ const Hero = () => {
                 title="FEMEGA hero background video mobile"
                 className="pointer-events-none"
                 src={hero.videoMobile || hero.videoDesktop}
+                loading="lazy"
                 allow="autoplay; encrypted-media; fullscreen"
                 allowFullScreen
                 frameBorder="0"
